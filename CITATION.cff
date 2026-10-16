@@ -5,7 +5,7 @@ type: dataset
 authors:
   - family-names: Lee
     given-names: Jaewook
-version: 0.2.0
+version: 0.3.0
 date-released: 2026-10-16
 url: "https://jwklee.github.io/data-center-congressional-position-tracker/"
 repository-code: "https://github.com/jwklee/data-center-congressional-position-tracker"

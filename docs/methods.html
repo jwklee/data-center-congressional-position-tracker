@@ -2701,10 +2701,10 @@ font-size: 0.75rem;
 font-weight: 850;
 text-shadow: 0 1px 2px rgba(0,0,0,0.22);
 }
-.history-supports_expansion { background: #17805d; }
+.history-support { background: #17805d; }
 .history-conditional_support { background: #6b914a; }
-.history-opposes_or_restricts { background: #c77622; }
-.history-moratorium_or_ban { background: #a63a4a; }
+.history-regulation { background: #c77622; }
+.history-opposition { background: #a63a4a; }
 .history-no_position { background: #9ca3ad; }
 .history-note {
 margin: 17px 0 0;
@@ -2851,10 +2851,10 @@ line-height: 1.2;
 .party-Democratic { color: #20578d; background: #e2edf8; }
 .party-Republican { color: #913d43; background: #f7e7e8; }
 .party-Independent { color: #5c4e86; background: #eee9f7; }
-.pos-supports_expansion { color: #116146; background: #ddf2e8; }
+.pos-support { color: #116146; background: #ddf2e8; }
 .pos-conditional_support { color: #356131; background: #e8f2df; }
-.pos-opposes_or_restricts { color: #8b4c0f; background: #faead8; }
-.pos-moratorium_or_ban { color: #8b2636; background: #f7dfe3; }
+.pos-regulation { color: #8b4c0f; background: #faead8; }
+.pos-opposition { color: #8b2636; background: #f7dfe3; }
 .pos-no_position { color: #5f6670; background: #eaebed; }
 .detail-row td { padding: 0; background: #f6faf9; }
 .detail-panel { padding: 24px clamp(20px, 4vw, 44px) 30px; border-bottom: 1px solid var(--line); }
@@ -2863,9 +2863,16 @@ line-height: 1.2;
 .detail-meta { margin: 7px 0 16px; color: var(--muted); font-size: 0.86rem; }
 .detail-summary { max-width: 850px; line-height: 1.6; }
 .detail-section-title { margin: 23px 0 10px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.scope-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.scope-summary { padding: 14px; border: 1px solid #dce3e1; border-radius: 11px; background: white; }
+.scope-summary-label { display: block; margin-bottom: 8px; color: var(--navy); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+.scope-summary-date { display: block; margin-top: 7px; color: var(--muted); font-size: 0.74rem; }
+.scope-summary p { margin: 10px 0 0; font-size: 0.86rem; line-height: 1.5; }
 .year-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .year-cell { padding: 12px; border: 1px solid #dce3e1; border-radius: 10px; background: white; }
 .year-cell strong { display: block; margin-bottom: 7px; font-size: 0.74rem; color: var(--muted); }
+.year-explainer { margin: -2px 0 12px; color: var(--muted); font-size: 0.82rem; }
+.position-path { display: block; margin-top: 8px; color: var(--muted); font-size: 0.7rem; line-height: 1.45; }
 .metric-list { display: grid; gap: 9px; }
 .metric-row { display: flex; justify-content: space-between; gap: 15px; padding-bottom: 9px; border-bottom: 1px solid #dce3e1; }
 .metric-row span:first-child { color: var(--muted); }
@@ -2874,11 +2881,15 @@ line-height: 1.2;
 .event-card { padding: 16px; border: 1px solid #dce3e1; border-radius: 12px; background: white; }
 .event-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 9px; }
 .event-date { font-weight: 800; color: var(--navy); }
+.scope-pill { padding: 4px 8px; border: 1px solid #d5dcda; border-radius: 999px; color: #425261; background: #f2f6f5; font-size: 0.7rem; font-weight: 750; }
 .event-action { color: var(--muted); font-size: 0.77rem; text-transform: capitalize; }
 .event-card p { margin: 0; line-height: 1.55; }
 .source-list { margin: 10px 0 0; padding-left: 18px; font-size: 0.82rem; }
 .source-list a { color: var(--teal-dark); }
 .empty-events { color: var(--muted); font-style: italic; }
+@media (max-width: 760px) {
+.scope-summary-grid, .year-grid { grid-template-columns: 1fr; }
+}
 .pager {
 display: flex;
 justify-content: space-between;
@@ -3044,18 +3055,28 @@ letter-spacing: -0.025em;
 <section id="position-categories" class="level2">
 <h2 class="anchored" data-anchor-id="position-categories">Position categories</h2>
 <ul>
-<li><strong>Supports expansion:</strong> affirmatively promotes data-center or related AI infrastructure expansion without a material restriction in the coded action.</li>
-<li><strong>Conditional support:</strong> supports development while requiring meaningful safeguards, planning, cost allocation, or community protections.</li>
-<li><strong>Opposes or restricts:</strong> supports a material restriction or opposes a project or expansion. This does not necessarily mean categorical opposition to all data centers.</li>
-<li><strong>Moratorium or ban:</strong> supports pausing or prohibiting covered development.</li>
+<li><strong>Support:</strong> affirmatively promotes data-center or related AI infrastructure expansion without making development contingent on a material prerequisite.</li>
+<li><strong>Conditional support:</strong> supports development while requiring meaningful safeguards, planning, cost allocation, or community protections as conditions.</li>
+<li><strong>Regulation:</strong> prioritizes binding safeguards, cost-allocation requirements, disclosure rules, siting standards, or resource protections without affirmatively supporting development in the coded action.</li>
+<li><strong>Opposition:</strong> affirmatively rejects a project or covered buildout, or calls for a halt, moratorium, or ban.</li>
 <li><strong>No position observed:</strong> the research found no codable position by the relevant cutoff, or none was observed in the selected calendar year. It is not a neutral policy position.</li>
 </ul>
-<p>Annual views show a position documented in that calendar year. The “latest” view uses the most recent documented position through each member’s evidence cutoff.</p>
+<p>A concern does not make support conditional unless it functions as a material prerequisite. Likewise, support for regulation does not by itself mean opposition to data-center construction. For example, an affirmative H.R. 9340 action is regulation because it concerns cost allocation.</p>
+</section>
+<section id="national-and-statelocal-positions" class="level2">
+<h2 class="anchored" data-anchor-id="national-and-statelocal-positions">National and state/local positions</h2>
+<p>Each event retains its detailed <code>target_scope</code>; the publication build also groups it as national, state/local, or mixed. The tracker uses the latest national or mixed-scope event as the member’s <strong>primary position</strong>. A separate state/local panel records the latest state, district, or named-project stance.</p>
+<p>One source can therefore generate two events when it establishes substantively different positions at different scopes. Gabe Vasquez’s record, for example, retains national conditional support for development with safeguards and a separate opposition event for the Socorro County proposal. Local opposition does not silently overwrite the national position.</p>
+</section>
+<section id="annual-snapshots-and-within-year-movement" class="level2">
+<h2 class="anchored" data-anchor-id="annual-snapshots-and-within-year-movement">Annual snapshots and within-year movement</h2>
+<p>Annual views show the latest national position documented in that calendar year. If comparable national evidence changes from conditional support to regulation during 2025, the 2025 snapshot is regulation because it came later. The expanded member view still shows the dated within-year path and every underlying event.</p>
+<p>Later evidence does not automatically prove a change in opinion. Different projects, jurisdictions, and policy instruments can produce different codes without contradiction; readers should compare the scope and event summary.</p>
 </section>
 <section id="carried-forward-history" class="level2">
 <h2 class="anchored" data-anchor-id="carried-forward-history">Carried-forward history</h2>
-<p>The overview chart begins each member at <strong>No position observed</strong>. For each year, it applies that year’s latest documented position when one exists; otherwise it carries the prior year’s category forward. Each annual bar therefore includes the full selected chamber cohort, while the annotation above the bar reports how many members had a position actually observed during that calendar year.</p>
-<p>Carry-forward is a display convention, not fresh evidence that a member reaffirmed the position. A change between categories is also not necessarily a policy reversal: later evidence may concern a different project, instrument, or geographic scope. The chart responds to the All Congress, House, and Senate tabs. The table’s state, party, position, year, and search filters do not change the chart.</p>
+<p>The overview chart begins each member at <strong>No position observed</strong>. For each year, it applies that year’s latest documented national position when one exists; otherwise it carries the prior year’s category forward. Each annual bar therefore includes the full selected chamber cohort, while the annotation above the bar reports how many members had a position actually observed during that calendar year.</p>
+<p>Carry-forward is a display convention, not fresh evidence that a member reaffirmed the position. A change between categories is also not necessarily a policy reversal: later evidence may concern a different instrument even at the same geographic scope. The chart responds to the All Congress, House, and Senate tabs. The table’s state, party, position, year, and search filters do not change the chart.</p>
 </section>
 <section id="evidence" class="level2">
 <h2 class="anchored" data-anchor-id="evidence">Evidence</h2>
