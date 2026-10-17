@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this tracker, please cite it as below."
-title: "Congressional Data-Center Position Tracker"
+title: "Congressional Data Center Position Tracker"
 type: dataset
 authors:
   - family-names: Lee

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Congressional Data-Center Position Tracker</title>
+<title>Congressional Data Center Position Tracker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2910,18 +2910,6 @@ cursor: pointer;
 }
 .pager button:disabled { opacity: 0.42; cursor: default; }
 #page-status { color: var(--muted); font-size: 0.82rem; }
-.scope-footer {
-margin: 30px 2px 0;
-padding: 20px 0 0;
-border-top: 1px solid var(--line);
-color: var(--muted);
-font-size: 0.82rem;
-line-height: 1.6;
-}
-.scope-footer strong { color: var(--ink); }
-.scope-footer a { color: var(--teal-dark); }
-.site-footer { padding: 28px 2px 0; color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
-.site-footer a { color: var(--teal-dark); }
 .content-page {
 width: min(900px, calc(100% - 36px));
 margin: 0 auto;
@@ -3009,6 +2997,422 @@ letter-spacing: -0.025em;
 .chamber-tabs { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; }
 .chamber-tab { padding: 9px 8px; }
 }
+
+:root {
+--ink: #18212d;
+--muted: #626b72;
+--paper: #f7f5ef;
+--surface: #fbfaf6;
+--line: #cfcac0;
+--navy: #12243a;
+--teal: #16746f;
+--teal-dark: #0e5d59;
+--amber: #b9671d;
+--rose: #a13f4d;
+--blue: #315f91;
+--shadow: none;
+}
+body { background: var(--paper); }
+.tracker-page {
+width: min(1440px, calc(100% - 72px));
+padding-top: 20px;
+}
+.topline {
+min-height: 42px;
+padding: 0 0 12px;
+border-bottom: 1px solid var(--line);
+}
+.topnav a {
+font-size: 0.76rem;
+font-weight: 800;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.nav-separator { color: #9c978d; }
+.hero {
+overflow: visible;
+padding: clamp(38px, 5vw, 62px) 0 clamp(36px, 4.5vw, 56px);
+border-bottom: 3px double var(--navy);
+border-radius: 0;
+color: var(--ink);
+background: transparent;
+box-shadow: none;
+}
+.hero::after { display: none; }
+.hero::before { display: none; }
+.hero .eyebrow,
+.analysis-header .eyebrow,
+.content-page > .eyebrow {
+color: var(--rose) !important;
+}
+.hero h1 {
+max-width: none;
+color: var(--navy);
+font-family: inherit;
+font-size: clamp(2.15rem, 3.5vw, 3.35rem);
+font-weight: 650;
+letter-spacing: -0.035em;
+line-height: 1.06;
+white-space: nowrap;
+}
+.hero-copy {
+max-width: 825px;
+margin-top: 28px;
+color: #46515b;
+font-family: inherit;
+font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+line-height: 1.58;
+}
+.history-section {
+margin: 0;
+padding: 42px 0 38px;
+border-top: 0;
+border-bottom: 1px solid var(--line);
+}
+.history-heading {
+padding-left: 20px;
+border-left: 4px solid #2c7fb8;
+}
+.history-heading h2 {
+font-family: inherit;
+font-size: clamp(1.5rem, 2.25vw, 2.05rem);
+font-weight: 650;
+letter-spacing: -0.02em;
+}
+.section-kicker { color: #2c7fb8; }
+.history-support { background: #2c7fb8; }
+.history-conditional_support { background: #41ab5d; }
+.history-regulation { background: #f59e0b; }
+.history-opposition { background: #e34a33; }
+.history-no_position { background: #969696; }
+.history-bar {
+height: 32px;
+border: 0;
+border-radius: 0;
+background: #deddd8;
+}
+.history-segment { border-right-color: rgba(247, 245, 239, 0.85); }
+.history-swatch { width: 9px; height: 9px; border-radius: 50%; }
+.controls {
+margin: 30px 0 16px;
+padding: 18px 22px 22px;
+border: 0;
+border-top: 1px solid var(--navy);
+border-bottom: 1px solid var(--line);
+border-radius: 0;
+background: #efede6;
+box-shadow: none;
+}
+.chamber-tabs {
+gap: 22px;
+margin-bottom: 24px;
+padding: 0;
+border-radius: 0;
+background: transparent;
+}
+.chamber-tab {
+padding: 7px 0 6px;
+border: 0;
+border-bottom: 2px solid transparent;
+border-radius: 0;
+color: var(--muted);
+background: transparent;
+font-size: 0.78rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.chamber-tab:hover { color: var(--navy); border-bottom-color: #9b9890; }
+.chamber-tab.active { color: var(--navy); border-bottom-color: var(--rose); background: transparent; }
+.field input,
+.field select {
+min-height: 42px;
+padding: 8px 22px 8px 0;
+border: 0;
+border-bottom: 1px solid #a9a69f;
+border-radius: 0;
+background-color: transparent;
+}
+.field input:hover,
+.field select:hover { border-bottom-color: var(--navy); }
+.field input:focus,
+.field select:focus,
+button:focus-visible,
+a:focus-visible {
+outline: 2px solid var(--teal);
+outline-offset: 3px;
+}
+.results-bar { margin: 22px 0 11px; }
+.table-shell {
+overflow: hidden;
+border: 0;
+border-top: 2px solid var(--navy);
+border-bottom: 1px solid var(--navy);
+border-radius: 0;
+background: transparent;
+box-shadow: none;
+}
+.table-scroll { overflow-x: visible; }
+.tracker-table {
+min-width: 0;
+table-layout: fixed;
+}
+.tracker-table th:nth-child(1) { width: 31%; }
+.tracker-table th:nth-child(2) { width: 10%; }
+.tracker-table th:nth-child(3) { width: 12%; }
+.tracker-table th:nth-child(4) { width: 15%; }
+.tracker-table th:nth-child(5) { width: 32%; }
+.tracker-table th {
+padding: 12px 14px;
+border-bottom-color: var(--navy);
+color: #505a64;
+background: #ebe8df;
+}
+.tracker-table td {
+padding: 15px 10px;
+border-bottom-color: #d8d4cb;
+overflow-wrap: anywhere;
+}
+.tracker-table th { padding-right: 10px; padding-left: 10px; }
+.seat-sub-mobile { display: none; }
+.tracker-table tr.data-row:hover td { background: rgba(255, 255, 255, 0.42); }
+.member-trigger::before {
+content: "+";
+display: block;
+width: 13px;
+height: auto;
+border-radius: 0;
+color: var(--rose);
+background: transparent;
+font-family: Georgia, "Times New Roman", serif;
+font-size: 1.15rem;
+}
+.member-trigger[aria-expanded="true"]::before { content: "−"; }
+.badge {
+padding: 0;
+border-radius: 0;
+background: transparent;
+font-size: 0.7rem;
+font-weight: 800;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.badge-house { color: #245478; background: transparent; }
+.badge-senate { color: #765a13; background: transparent; }
+.party-Democratic { color: #275f91; background: transparent; }
+.party-Republican { color: #93404a; background: transparent; }
+.party-Independent { color: #5c4e86; background: transparent; }
+.position-pill {
+--marker: #777d82;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 0;
+border-radius: 0;
+color: var(--ink);
+background: transparent;
+font-size: 0.77rem;
+font-weight: 800;
+line-height: 1.25;
+}
+.position-pill::before {
+content: "";
+flex: 0 0 auto;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: var(--marker);
+}
+.pos-support { --marker: #2c7fb8; color: #245f87; background: transparent; }
+.pos-conditional_support { --marker: #41ab5d; color: #357847; background: transparent; }
+.pos-regulation { --marker: #f59e0b; color: #86580b; background: transparent; }
+.pos-opposition { --marker: #e34a33; color: #963425; background: transparent; }
+.pos-no_position { --marker: #969696; color: #62696f; background: transparent; }
+.detail-row td { background: rgba(255, 255, 255, 0.28); }
+.detail-panel {
+margin-left: 28px;
+padding: 28px clamp(20px, 4vw, 46px) 36px;
+border-bottom: 1px solid var(--navy);
+border-left: 3px solid var(--teal);
+}
+.scope-summary-grid {
+gap: 0;
+border-top: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+}
+.scope-summary {
+padding: 16px 20px 16px 0;
+border: 0;
+border-radius: 0;
+background: transparent;
+}
+.scope-summary + .scope-summary {
+padding-left: 20px;
+border-left: 1px solid var(--line);
+}
+.year-grid {
+gap: 0;
+border-top: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+}
+.year-cell {
+padding: 14px 18px;
+border: 0;
+border-right: 1px solid var(--line);
+border-radius: 0;
+background: transparent;
+}
+.year-cell:first-child { padding-left: 0; }
+.year-cell:last-child { border-right: 0; }
+.event-list {
+gap: 0;
+margin-left: 5px;
+padding-left: 23px;
+border-left: 1px solid #a9aaa6;
+}
+.event-card {
+position: relative;
+padding: 0 0 20px;
+border: 0;
+border-bottom: 1px solid #d8d4cb;
+border-radius: 0;
+background: transparent;
+}
+.event-card + .event-card { padding-top: 20px; }
+.event-card::before {
+content: "";
+position: absolute;
+top: 6px;
+left: -28px;
+width: 9px;
+height: 9px;
+border: 2px solid var(--paper);
+border-radius: 50%;
+background: var(--teal);
+box-shadow: 0 0 0 1px var(--teal);
+}
+.event-card + .event-card::before { top: 26px; }
+.scope-pill {
+padding: 0 0 0 9px;
+border: 0;
+border-left: 1px solid #aaa69d;
+border-radius: 0;
+color: #515a62;
+background: transparent;
+font-size: 0.68rem;
+font-weight: 800;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+.pager {
+padding: 15px 0;
+background: transparent;
+}
+.pager button {
+padding: 5px 0;
+border: 0;
+border-bottom: 1px solid var(--navy);
+border-radius: 0;
+background: transparent;
+}
+.content-page {
+width: min(860px, calc(100% - 44px));
+padding-top: 28px;
+}
+.content-page h1 {
+padding: clamp(34px, 6vw, 70px) 0 32px;
+border-top: 1px solid var(--line);
+border-bottom: 3px double var(--navy);
+}
+.content-page h2 {
+margin-top: 48px;
+padding-top: 17px;
+border-top: 1px solid var(--line);
+font-family: Georgia, "Times New Roman", serif;
+font-weight: 500;
+}
+.notes-section {
+display: block;
+width: min(1440px, calc(100% - 72px));
+margin: 56px auto 0;
+padding: 30px 0 4px;
+border-top: 3px double var(--navy);
+}
+.notes-heading h2 {
+margin: 0;
+color: var(--navy);
+font-family: inherit;
+font-size: 1.35rem;
+font-weight: 650;
+}
+.notes-copy {
+max-width: 1050px;
+margin-top: 16px;
+color: var(--muted);
+font-size: 0.86rem;
+line-height: 1.65;
+}
+.notes-copy p { margin: 0 0 12px; }
+.notes-copy strong { color: var(--ink); }
+.notes-link { margin-top: 17px !important; }
+.notes-link a {
+padding-bottom: 2px;
+border-bottom: 1px solid var(--teal-dark);
+color: var(--teal-dark);
+font-weight: 750;
+text-decoration: none;
+}
+.primary-link {
+padding: 3px 0;
+border-bottom: 2px solid var(--rose);
+border-radius: 0;
+color: var(--navy) !important;
+background: transparent;
+}
+.primary-link::after { content: " →"; color: var(--rose); }
+.analysis-header { border-bottom: 3px double var(--navy); }
+.analysis-page table th { background: transparent; }
+@media (max-width: 760px) {
+.scope-summary-grid { border-bottom: 0; }
+.scope-summary { padding: 15px 0; border-bottom: 1px solid var(--line); }
+.scope-summary + .scope-summary { padding-left: 0; border-left: 0; }
+.year-grid { border-bottom: 0; }
+.year-cell,
+.year-cell:first-child {
+padding: 14px 0;
+border-right: 0;
+border-bottom: 1px solid var(--line);
+}
+.tracker-table,
+.tracker-table tbody,
+.tracker-table tr.detail-row,
+.tracker-table tr.detail-row td { display: block; width: 100%; }
+.tracker-table thead { display: none; }
+.tracker-table tr.data-row {
+display: grid;
+grid-template-columns: minmax(0, 1fr) minmax(128px, 42%);
+align-items: center;
+gap: 12px;
+padding: 14px 4px;
+border-bottom: 1px solid #d8d4cb;
+}
+.tracker-table tr.data-row td { display: none; padding: 0; border: 0; }
+.tracker-table tr.data-row td:first-child,
+.tracker-table tr.data-row td:last-child { display: block; }
+.tracker-table tr.data-row td:last-child { text-align: right; }
+.seat-sub-desktop { display: none; }
+.seat-sub-mobile { display: block; }
+}
+@media (max-width: 620px) {
+.tracker-page,
+.notes-section { width: min(100% - 28px, 1440px); }
+.hero { padding: 38px 0 44px; }
+.hero h1 { font-size: clamp(2rem, 9vw, 2.65rem); white-space: normal; }
+.chamber-tabs { display: flex; width: auto; gap: 18px; }
+.chamber-tab { padding: 7px 0 5px; }
+.detail-panel { margin-left: 10px; padding-left: 17px; }
+.history-heading { padding-left: 14px; }
+.controls { padding-right: 14px; padding-left: 14px; }
+}
 </style>
 </head>
 
@@ -3016,11 +3420,11 @@ letter-spacing: -0.025em;
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
 
-<main class="content column-page" id="quarto-document-content">
+<main class="content page-columns page-full column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Congressional Data-Center Position Tracker</h1>
+<h1 class="title">Congressional Data Center Position Tracker</h1>
 </div>
 
 
@@ -3042,14 +3446,11 @@ letter-spacing: -0.025em;
   <nav class="topnav" aria-label="Primary navigation"><a href="congressional_position_tracker.html" aria-current="page">Tracker</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html">Methods</a></nav>
 </div>
 <div class="hero">
-<p class="eyebrow">
-Documented positions · 2024–2026
-</p>
 <h1>
-Congressional Data-Center Position Tracker
+Congressional Data Center Position Tracker
 </h1>
 <p class="hero-copy">
-Search documented positions on data-center development, infrastructure, cost allocation, siting, and regulation across both chambers of Congress. National positions are primary; state and local positions remain separately visible.
+Search documented positions from 2024 onward on data center development, infrastructure, cost allocation, siting, and regulation across both chambers of Congress.
 </p>
 </div>
 
@@ -3057,13 +3458,13 @@ Search documented positions on data-center development, infrastructure, cost all
   <div class="history-heading">
     <div>
       <p class="section-kicker">Overview</p>
-      <h2 id="history-title" class="anchored">National carried-forward position history</h2>
+      <h2 id="history-title" class="anchored">Position history since 2024</h2>
     </div>
-    <p>Each row shows the latest documented national position known by year-end. A later comparable observation replaces the earlier category; without one, the prior category carries forward.</p>
+    <p>Each row shows the latest documented national position known at the end of the year. If no later position was observed, the prior category carries forward.</p>
   </div>
   <div class="history-legend" id="history-legend" aria-label="Position category legend"></div>
   <div class="history-chart" id="history-chart"></div>
-  <p class="history-note"><span id="history-scope"></span> Carry-forward is a display convention, not evidence that a member reaffirmed a position. The chart responds to the chamber tabs; other filters apply to the table below. <a href="methods.html#carried-forward-history">How to read this history.</a></p>
+  <p class="history-note"><span id="history-scope"></span> Carry-forward is a display convention, not evidence that a member reaffirmed a position. The chart responds to the chamber tabs; other filters apply to the table below.</p>
 </section>
 <section class="controls" aria-label="Tracker filters">
   <div class="chamber-tabs" role="group" aria-label="Filter by chamber">
@@ -3092,13 +3493,17 @@ Search documented positions on data-center development, infrastructure, cost all
   </div>
   <div class="pager"><button type="button" id="prev-page">Previous</button><span id="page-status"></span><button type="button" id="next-page">Next</button></div>
 </section>
-<div class="scope-footer">
-<strong>Scope:</strong> House rows are the winners of the 2024 general election; Senate rows are senators serving at the September 30, 2026 evidence cutoff. The combined view is not a common-date incumbent snapshot. <a href="methods.html">Methods and scope.</a>
 </div>
-<footer class="site-footer">
-Position categories summarize documented public actions and statements; they are not a validated ideological scale. “No position observed” is not a neutral policy position. See the <a href="methods.html">methods and scope page</a> for definitions and limitations.
-</footer>
-</div>
+<aside class="notes-section" aria-labelledby="notes-title">
+  <div class="notes-heading">
+    <h2 id="notes-title" class="anchored">Notes</h2>
+  </div>
+  <div class="notes-copy">
+    <p><strong>Cohorts.</strong> House rows are the winners of the 2024 general election; Senate rows are senators serving at the September 30, 2026 evidence cutoff. The combined view is therefore not a common-date incumbent snapshot.</p>
+    <p><strong>Interpretation.</strong> Categories summarize documented public actions and statements rather than an ideological scale. “No position observed” means that no qualifying position was found; it does not indicate neutrality.</p>
+    <p class="notes-link"><a href="methods.html">Methods, definitions, and limitations <span aria-hidden="true">→</span></a></p>
+  </div>
+</aside>
 <script>
 (() => {
   "use strict";
@@ -3280,7 +3685,7 @@ Position categories summarize documented public actions and statements; they are
     visible.forEach(member => {
       const open = state.openId === member.member_id;
       rows.push(`<tr class="data-row">
-        <td><button type="button" class="member-trigger" data-member-id="${escapeHtml(member.member_id)}" aria-expanded="${open}">${text(member.member_name)}</button><span class="seat-sub">${text(member.cohort)}</span></td>
+        <td><button type="button" class="member-trigger" data-member-id="${escapeHtml(member.member_id)}" aria-expanded="${open}">${text(member.member_name)}</button><span class="seat-sub seat-sub-desktop">${text(member.cohort)}</span><span class="seat-sub seat-sub-mobile">${text(member.chamber)} · ${text(member.seat_label)} · ${text(member.party)}</span></td>
         <td><span class="badge badge-${member.chamber.toLowerCase()}">${text(member.chamber)}</span></td>
         <td>${text(member.seat_label)}</td>
         <td><span class="badge party-${escapeHtml(member.party)}">${text(member.party)}</span></td>

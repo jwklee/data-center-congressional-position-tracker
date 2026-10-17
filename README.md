@@ -1,7 +1,7 @@
-# Congressional Data-Center Position Tracker
+# Congressional Data Center Position Tracker
 
 This repository contains the rendered public website for the Congressional
-Data-Center Position Tracker.
+Data Center Position Tracker.
 
 - [Combined tracker](https://jwklee.github.io/data-center-congressional-position-tracker/congressional_position_tracker.html)
 - [Methods and scope](https://jwklee.github.io/data-center-congressional-position-tracker/methods.html)
