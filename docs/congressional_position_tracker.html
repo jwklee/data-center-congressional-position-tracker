@@ -3811,7 +3811,7 @@ See what members of Congress have said and done about data center development si
     <div class="field"><label for="state-filter">State</label><select id="state-filter"><option value="All">All states</option></select></div>
     <div class="field"><label for="party-filter">Party</label><select id="party-filter"><option value="All">All parties</option></select></div>
     <div class="field"><label for="position-filter">Latest documented action</label><select id="position-filter"><option value="All">All positions</option></select></div>
-    <div class="field"><label for="basis-filter">Evidence basis</label><select id="basis-filter"><option value="All">All evidence</option><option value="other_evidence">Member-specific or collective</option><option value="chamber_vote_only">Chamber-wide vote only</option></select></div>
+    <div class="field"><label for="basis-filter">Evidence basis</label><select id="basis-filter"><option value="All">All evidence</option><option value="other_evidence">Member-specific evidence</option><option value="chamber_vote_only">Chamber-wide vote only</option></select></div>
     <div class="field"><label for="year-filter">Time view</label><select id="year-filter"><option value="all">Through Sep. 2026</option><option value="2026">Latest observed in 2026</option><option value="2025">Latest observed in 2025</option><option value="2024">Latest observed in 2024</option></select></div>
   </div>
 </section>
@@ -3927,9 +3927,9 @@ See what members of Congress have said and done about data center development si
     const basisLabel = basis === "chamber_vote_only"
       ? "Roll-call vote only · H.R. 9340"
       : basis === "other_evidence" && events.some(isChamberWideVote)
-        ? "Other evidence also documented"
+        ? "Additional member-specific evidence"
         : basis === "other_evidence"
-          ? "Member-specific or collective evidence"
+          ? "Member-specific evidence"
           : "";
     const basisLine = basisLabel ? `<small class="evidence-basis-note basis-${escapeHtml(basis)}">${escapeHtml(basisLabel)}</small>` : "";
     return `<div class="latest-position-cell">${positionPill(latest.code)}${date}${basisLine}</div>`;
