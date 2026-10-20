@@ -2578,7 +2578,7 @@ justify-content: flex-end;
 gap: 20px;
 padding: 0 2px 22px;
 }
-.topnav { display: flex; align-items: center; gap: 10px; }
+.topnav { display: flex; align-items: center; gap: 10px; max-width: 100%; overflow-x: auto; white-space: nowrap; }
 .topnav a { color: var(--ink); font-size: 0.9rem; text-decoration: none; font-weight: 650; }
 .topnav a:hover { color: var(--teal-dark); text-decoration: underline; }
 .topnav a[aria-current="page"] { color: var(--teal-dark); }
@@ -3685,6 +3685,9 @@ text-align: left;
 </header>
 
 <div class="content-page">
+<div class="topline">
+  <nav class="topnav" aria-label="Primary navigation"><a href="https://jwklee.github.io/data-center-opposition-tracker/tracker.html">Local opposition</a><span class="nav-separator" aria-hidden="true">|</span><a href="congressional_position_tracker.html">Congressional positions</a><span class="nav-separator" aria-hidden="true">|</span><a href="2026_elections.html">2026 elections</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html">Methods</a></nav>
+</div>
 <p class="eyebrow" style="color:#087e78">
 House + Senate · 2024–2026
 </p>
