@@ -2886,6 +2886,34 @@ line-height: 1.2;
 .event-card p { margin: 0; line-height: 1.55; }
 .source-list { margin: 10px 0 0; padding-left: 18px; font-size: 0.82rem; }
 .source-list a { color: var(--teal-dark); }
+.source-list blockquote {
+margin: 7px 0 10px;
+padding-left: 11px;
+border-left: 2px solid #a7a39a;
+color: #4e5963;
+font-size: 0.78rem;
+font-style: normal;
+line-height: 1.5;
+}
+.structured-evidence {
+margin: 8px 0 11px;
+padding-left: 11px;
+border-left: 2px solid #a7a39a;
+}
+.structured-evidence span {
+display: block;
+margin-bottom: 3px;
+color: var(--muted);
+font-size: 0.64rem;
+font-weight: 780;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.structured-evidence p {
+color: #4e5963;
+font-size: 0.78rem;
+line-height: 1.5;
+}
 .empty-events { color: var(--muted); font-style: italic; }
 @media (max-width: 760px) {
 .scope-summary-grid, .year-grid { grid-template-columns: 1fr; }
@@ -3156,11 +3184,12 @@ box-shadow: none;
 min-width: 0;
 table-layout: fixed;
 }
-.tracker-table th:nth-child(1) { width: 31%; }
-.tracker-table th:nth-child(2) { width: 10%; }
-.tracker-table th:nth-child(3) { width: 12%; }
-.tracker-table th:nth-child(4) { width: 15%; }
-.tracker-table th:nth-child(5) { width: 32%; }
+.tracker-table th:nth-child(1) { width: 27%; }
+.tracker-table th:nth-child(2) { width: 9%; }
+.tracker-table th:nth-child(3) { width: 11%; }
+.tracker-table th:nth-child(4) { width: 12%; }
+.tracker-table th:nth-child(5) { width: 18%; }
+.tracker-table th:nth-child(6) { width: 23%; }
 .tracker-table th {
 padding: 12px 14px;
 border-bottom-color: var(--navy);
@@ -3227,6 +3256,13 @@ background: var(--marker);
 .pos-regulation { --marker: #f59e0b; color: #86580b; background: transparent; }
 .pos-opposition { --marker: #e34a33; color: #963425; background: transparent; }
 .pos-no_position { --marker: #969696; color: #62696f; background: transparent; }
+.latest-position-cell small {
+display: block;
+margin-top: 6px;
+color: var(--muted);
+font-size: 0.7rem;
+line-height: 1.35;
+}
 .detail-row td { background: rgba(255, 255, 255, 0.28); }
 .detail-panel {
 margin-left: 28px;
@@ -3268,6 +3304,11 @@ gap: 0;
 margin-left: 5px;
 padding-left: 23px;
 border-left: 1px solid #a9aaa6;
+}
+.event-explainer {
+margin: -3px 0 15px;
+color: var(--muted);
+font-size: 0.8rem;
 }
 .event-card {
 position: relative;
@@ -3398,7 +3439,13 @@ border-bottom: 1px solid #d8d4cb;
 .tracker-table tr.data-row td { display: none; padding: 0; border: 0; }
 .tracker-table tr.data-row td:first-child,
 .tracker-table tr.data-row td:last-child { display: block; }
+.tracker-table tr.data-row td:nth-child(5) {
+display: block;
+grid-column: 1 / -1;
+padding: 3px 0 0 25px;
+}
 .tracker-table tr.data-row td:last-child { text-align: right; }
+.latest-position-cell { min-width: 0; }
 .seat-sub-desktop { display: none; }
 .seat-sub-mobile { display: block; }
 }
@@ -3412,6 +3459,204 @@ border-bottom: 1px solid #d8d4cb;
 .detail-panel { margin-left: 10px; padding-left: 17px; }
 .history-heading { padding-left: 14px; }
 .controls { padding-right: 14px; padding-left: 14px; }
+}
+
+.secondary-link {
+display: inline-block;
+margin-left: 20px;
+padding: 3px 0;
+border-bottom: 2px solid var(--teal);
+color: var(--navy) !important;
+text-decoration: none;
+font-weight: 750;
+}
+.tracker-table th:nth-child(1) { width: 27%; }
+.tracker-table th:nth-child(2) { width: 9%; }
+.tracker-table th:nth-child(3) { width: 11%; }
+.tracker-table th:nth-child(4) { width: 12%; }
+.tracker-table th:nth-child(5) { width: 18%; }
+.tracker-table th:nth-child(6) { width: 23%; }
+.tracker-election-link {
+display: inline-grid;
+gap: 3px;
+color: var(--navy);
+line-height: 1.25;
+text-decoration: none;
+}
+.tracker-election-link span {
+width: fit-content;
+border-bottom: 1px solid #9faaa8;
+font-size: 0.76rem;
+font-weight: 800;
+}
+.tracker-election-link small {
+max-width: 190px;
+color: var(--muted);
+font-size: 0.67rem;
+font-weight: 500;
+}
+.tracker-election-link:hover span { border-bottom-color: var(--rose); }
+.election-context-row strong { max-width: 200px; }
+.election-hero { padding-bottom: clamp(28px, 3vw, 42px); }
+.election-intro {
+display: grid;
+grid-template-columns: minmax(220px, 0.7fr) minmax(420px, 1.3fr);
+gap: 8px 54px;
+padding: 38px 0 34px;
+border-bottom: 1px solid var(--line);
+}
+.election-intro .section-kicker { grid-column: 1; margin: 2px 0 0; }
+.election-intro h2 {
+grid-column: 1;
+margin: 0;
+color: var(--navy);
+font-size: clamp(1.45rem, 2.3vw, 2.05rem);
+font-weight: 650;
+letter-spacing: -0.025em;
+line-height: 1.14;
+}
+.election-distribution {
+display: grid;
+grid-column: 1 / -1;
+gap: 9px;
+margin-top: 25px;
+}
+.election-distribution-row {
+display: grid;
+grid-template-columns: 190px minmax(200px, 1fr) 42px;
+align-items: center;
+gap: 12px;
+color: var(--muted);
+font-size: 0.76rem;
+}
+.election-distribution-row > span { display: flex; align-items: center; gap: 8px; }
+.election-distribution-row > div { height: 5px; background: #ddd9d0; }
+.election-distribution-row > div b { display: block; height: 100%; background: var(--navy); }
+.election-distribution-row:nth-child(2) > div b { background: var(--rose); }
+.election-distribution-row:nth-child(3) > div b { background: #8a8f91; }
+.election-distribution-row > strong { color: var(--navy); text-align: right; }
+.status-dot,
+.election-status i {
+display: inline-block;
+width: 7px;
+height: 7px;
+flex: 0 0 auto;
+background: var(--navy);
+}
+.status-dot.status-not_on_ballot,
+.election-status.status-not_on_ballot i { background: var(--rose); }
+.status-dot.status-not_scheduled,
+.election-status.status-not_scheduled i { background: #8a8f91; }
+.election-control-row {
+display: grid;
+grid-template-columns: minmax(300px, 2fr) repeat(3, minmax(155px, 1fr));
+gap: 18px;
+align-items: end;
+}
+.election-table th:nth-child(1) { width: 20%; }
+.election-table th:nth-child(2) { width: 9%; }
+.election-table th:nth-child(3) { width: 10%; }
+.election-table th:nth-child(4) { width: 18%; }
+.election-table th:nth-child(5) { width: 19%; }
+.election-table th:nth-child(6) { width: 24%; }
+.election-status {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+color: var(--navy);
+font-size: 0.76rem;
+font-weight: 800;
+white-space: nowrap;
+}
+.election-detail-status {
+display: grid;
+grid-template-columns: max-content 1fr;
+align-items: baseline;
+gap: 8px 18px;
+margin: 20px 0 0;
+padding: 14px 0;
+border-top: 1px solid #d4d1c9;
+border-bottom: 1px solid #d4d1c9;
+}
+.election-detail-status > span:last-child {
+grid-column: 2;
+color: var(--muted);
+font-size: 0.8rem;
+}
+.election-resolution-note {
+max-width: 760px;
+margin: 14px 0 0;
+color: #46515b;
+line-height: 1.55;
+}
+.election-asof {
+display: grid;
+grid-template-columns: 1fr auto;
+align-content: start;
+gap: 8px 18px;
+padding-top: 4px;
+font-size: 0.79rem;
+}
+.election-asof span { color: var(--muted); }
+.election-asof strong { color: var(--navy); }
+.election-detail-columns {
+display: grid;
+grid-template-columns: minmax(260px, 0.75fr) minmax(420px, 1.25fr);
+gap: 38px;
+margin-top: 12px;
+}
+.campaign-list,
+.election-source-list { margin: 0; padding: 0; list-style: none; }
+.campaign-list li,
+.election-source-list li { padding: 11px 0; border-top: 1px solid #d9d6ce; }
+.campaign-list li:first-child,
+.election-source-list li:first-child { border-top-color: var(--navy); }
+.campaign-list strong { color: var(--navy); }
+.campaign-list span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.78rem; }
+.election-source-list a { color: var(--teal-dark); font-weight: 750; }
+.election-source-list li > span { display: block; margin-top: 2px; color: var(--muted); font-size: 0.76rem; }
+.election-source-list blockquote {
+margin: 8px 0 0;
+padding: 0 0 0 12px;
+border-left: 2px solid #a7a39a;
+color: #4e5963;
+font-size: 0.78rem;
+font-style: normal;
+line-height: 1.5;
+}
+@media (max-width: 980px) {
+.election-control-row { grid-template-columns: repeat(2, 1fr); }
+.election-control-row .field-search { grid-column: 1 / -1; }
+.election-detail-columns { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 760px) {
+.tracker-table tr.data-row td:nth-child(5),
+.tracker-table tr.data-row td:nth-child(6) { display: block; }
+.tracker-table tr.data-row td:nth-child(6) {
+grid-column: 1 / -1;
+text-align: left;
+}
+.election-table tr.data-row { grid-template-columns: 1fr; gap: 8px; }
+.election-table tr.data-row td:first-child,
+.election-table tr.data-row td:nth-child(4),
+.election-table tr.data-row td:nth-child(5),
+.election-table tr.data-row td:nth-child(6) {
+display: block;
+grid-column: 1;
+text-align: left;
+}
+}
+@media (max-width: 620px) {
+.election-control-row { grid-template-columns: 1fr; }
+.election-control-row .field-search { grid-column: auto; }
+.election-intro { grid-template-columns: 1fr; gap: 8px; }
+.election-intro .section-kicker,
+.election-intro h2 { grid-column: 1; grid-row: auto; }
+.election-distribution-row { grid-template-columns: 1fr 34px; }
+.election-distribution-row > div { grid-column: 1 / -1; grid-row: 2; }
+.election-detail-status { grid-template-columns: 1fr; }
+.election-detail-status > span:last-child { grid-column: 1; }
+.secondary-link { display: block; width: fit-content; margin: 14px 0 0; }
 }
 </style>
 </head>
@@ -3445,12 +3690,13 @@ House + Senate · 2024–2026
 </p>
 <section id="congressional-data-center-position-tracker" class="level1">
 <h1>Congressional Data Center Position Tracker</h1>
-<p>Explore source-linked positions on data center development and regulation across 435 House seats and 100 Senate seats. The combined tracker is searchable by member, chamber, state, party, and position category.</p>
+<p>This tracker brings House and Senate records on data center development into one place. Each position links back to the vote, bill, letter, or public statement used to code it. You can search by member, chamber, state, party, or position.</p>
 <p><a href="congressional_position_tracker.html" class="primary-link">Open the combined congressional tracker</a></p>
-<section id="scope" class="level2">
-<h2 class="anchored" data-anchor-id="scope">Scope</h2>
-<p>The tracker combines two related but not identical cohorts: winners of the 2024 House general election and senators serving at the September 30, 2026 evidence cutoff. This distinction is shown in the tracker and explained in the <a href="methods.html">methods and scope</a>.</p>
-<p>The primary tracker is a standalone HTML document: its data, styles, and interactions are embedded in the file, while source links open the original public pages.</p>
+<p><a href="2026_elections.html" class="secondary-link">View tracked members in the 2026 election</a></p>
+<section id="who-is-included" class="level2">
+<h2 class="anchored" data-anchor-id="who-is-included">Who is included</h2>
+<p>The House records begin with the winners of the 2024 general election. The Senate records cover the senators serving at the September 30, 2026 cutoff. Members who entered the House later through special elections appear alongside the people they succeeded.</p>
+<p>The <a href="methods.html">methods page</a> explains the coding decisions and the differences between the House and Senate groups. Source links in the tracker open the original public record.</p>
 </section>
 </section>
 </div>

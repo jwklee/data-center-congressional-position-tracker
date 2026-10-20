@@ -2886,6 +2886,34 @@ line-height: 1.2;
 .event-card p { margin: 0; line-height: 1.55; }
 .source-list { margin: 10px 0 0; padding-left: 18px; font-size: 0.82rem; }
 .source-list a { color: var(--teal-dark); }
+.source-list blockquote {
+margin: 7px 0 10px;
+padding-left: 11px;
+border-left: 2px solid #a7a39a;
+color: #4e5963;
+font-size: 0.78rem;
+font-style: normal;
+line-height: 1.5;
+}
+.structured-evidence {
+margin: 8px 0 11px;
+padding-left: 11px;
+border-left: 2px solid #a7a39a;
+}
+.structured-evidence span {
+display: block;
+margin-bottom: 3px;
+color: var(--muted);
+font-size: 0.64rem;
+font-weight: 780;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.structured-evidence p {
+color: #4e5963;
+font-size: 0.78rem;
+line-height: 1.5;
+}
 .empty-events { color: var(--muted); font-style: italic; }
 @media (max-width: 760px) {
 .scope-summary-grid, .year-grid { grid-template-columns: 1fr; }
@@ -3156,11 +3184,12 @@ box-shadow: none;
 min-width: 0;
 table-layout: fixed;
 }
-.tracker-table th:nth-child(1) { width: 31%; }
-.tracker-table th:nth-child(2) { width: 10%; }
-.tracker-table th:nth-child(3) { width: 12%; }
-.tracker-table th:nth-child(4) { width: 15%; }
-.tracker-table th:nth-child(5) { width: 32%; }
+.tracker-table th:nth-child(1) { width: 27%; }
+.tracker-table th:nth-child(2) { width: 9%; }
+.tracker-table th:nth-child(3) { width: 11%; }
+.tracker-table th:nth-child(4) { width: 12%; }
+.tracker-table th:nth-child(5) { width: 18%; }
+.tracker-table th:nth-child(6) { width: 23%; }
 .tracker-table th {
 padding: 12px 14px;
 border-bottom-color: var(--navy);
@@ -3227,6 +3256,13 @@ background: var(--marker);
 .pos-regulation { --marker: #f59e0b; color: #86580b; background: transparent; }
 .pos-opposition { --marker: #e34a33; color: #963425; background: transparent; }
 .pos-no_position { --marker: #969696; color: #62696f; background: transparent; }
+.latest-position-cell small {
+display: block;
+margin-top: 6px;
+color: var(--muted);
+font-size: 0.7rem;
+line-height: 1.35;
+}
 .detail-row td { background: rgba(255, 255, 255, 0.28); }
 .detail-panel {
 margin-left: 28px;
@@ -3268,6 +3304,11 @@ gap: 0;
 margin-left: 5px;
 padding-left: 23px;
 border-left: 1px solid #a9aaa6;
+}
+.event-explainer {
+margin: -3px 0 15px;
+color: var(--muted);
+font-size: 0.8rem;
 }
 .event-card {
 position: relative;
@@ -3398,7 +3439,13 @@ border-bottom: 1px solid #d8d4cb;
 .tracker-table tr.data-row td { display: none; padding: 0; border: 0; }
 .tracker-table tr.data-row td:first-child,
 .tracker-table tr.data-row td:last-child { display: block; }
+.tracker-table tr.data-row td:nth-child(5) {
+display: block;
+grid-column: 1 / -1;
+padding: 3px 0 0 25px;
+}
 .tracker-table tr.data-row td:last-child { text-align: right; }
+.latest-position-cell { min-width: 0; }
 .seat-sub-desktop { display: none; }
 .seat-sub-mobile { display: block; }
 }
@@ -3412,6 +3459,204 @@ border-bottom: 1px solid #d8d4cb;
 .detail-panel { margin-left: 10px; padding-left: 17px; }
 .history-heading { padding-left: 14px; }
 .controls { padding-right: 14px; padding-left: 14px; }
+}
+
+.secondary-link {
+display: inline-block;
+margin-left: 20px;
+padding: 3px 0;
+border-bottom: 2px solid var(--teal);
+color: var(--navy) !important;
+text-decoration: none;
+font-weight: 750;
+}
+.tracker-table th:nth-child(1) { width: 27%; }
+.tracker-table th:nth-child(2) { width: 9%; }
+.tracker-table th:nth-child(3) { width: 11%; }
+.tracker-table th:nth-child(4) { width: 12%; }
+.tracker-table th:nth-child(5) { width: 18%; }
+.tracker-table th:nth-child(6) { width: 23%; }
+.tracker-election-link {
+display: inline-grid;
+gap: 3px;
+color: var(--navy);
+line-height: 1.25;
+text-decoration: none;
+}
+.tracker-election-link span {
+width: fit-content;
+border-bottom: 1px solid #9faaa8;
+font-size: 0.76rem;
+font-weight: 800;
+}
+.tracker-election-link small {
+max-width: 190px;
+color: var(--muted);
+font-size: 0.67rem;
+font-weight: 500;
+}
+.tracker-election-link:hover span { border-bottom-color: var(--rose); }
+.election-context-row strong { max-width: 200px; }
+.election-hero { padding-bottom: clamp(28px, 3vw, 42px); }
+.election-intro {
+display: grid;
+grid-template-columns: minmax(220px, 0.7fr) minmax(420px, 1.3fr);
+gap: 8px 54px;
+padding: 38px 0 34px;
+border-bottom: 1px solid var(--line);
+}
+.election-intro .section-kicker { grid-column: 1; margin: 2px 0 0; }
+.election-intro h2 {
+grid-column: 1;
+margin: 0;
+color: var(--navy);
+font-size: clamp(1.45rem, 2.3vw, 2.05rem);
+font-weight: 650;
+letter-spacing: -0.025em;
+line-height: 1.14;
+}
+.election-distribution {
+display: grid;
+grid-column: 1 / -1;
+gap: 9px;
+margin-top: 25px;
+}
+.election-distribution-row {
+display: grid;
+grid-template-columns: 190px minmax(200px, 1fr) 42px;
+align-items: center;
+gap: 12px;
+color: var(--muted);
+font-size: 0.76rem;
+}
+.election-distribution-row > span { display: flex; align-items: center; gap: 8px; }
+.election-distribution-row > div { height: 5px; background: #ddd9d0; }
+.election-distribution-row > div b { display: block; height: 100%; background: var(--navy); }
+.election-distribution-row:nth-child(2) > div b { background: var(--rose); }
+.election-distribution-row:nth-child(3) > div b { background: #8a8f91; }
+.election-distribution-row > strong { color: var(--navy); text-align: right; }
+.status-dot,
+.election-status i {
+display: inline-block;
+width: 7px;
+height: 7px;
+flex: 0 0 auto;
+background: var(--navy);
+}
+.status-dot.status-not_on_ballot,
+.election-status.status-not_on_ballot i { background: var(--rose); }
+.status-dot.status-not_scheduled,
+.election-status.status-not_scheduled i { background: #8a8f91; }
+.election-control-row {
+display: grid;
+grid-template-columns: minmax(300px, 2fr) repeat(3, minmax(155px, 1fr));
+gap: 18px;
+align-items: end;
+}
+.election-table th:nth-child(1) { width: 20%; }
+.election-table th:nth-child(2) { width: 9%; }
+.election-table th:nth-child(3) { width: 10%; }
+.election-table th:nth-child(4) { width: 18%; }
+.election-table th:nth-child(5) { width: 19%; }
+.election-table th:nth-child(6) { width: 24%; }
+.election-status {
+display: inline-flex;
+align-items: center;
+gap: 7px;
+color: var(--navy);
+font-size: 0.76rem;
+font-weight: 800;
+white-space: nowrap;
+}
+.election-detail-status {
+display: grid;
+grid-template-columns: max-content 1fr;
+align-items: baseline;
+gap: 8px 18px;
+margin: 20px 0 0;
+padding: 14px 0;
+border-top: 1px solid #d4d1c9;
+border-bottom: 1px solid #d4d1c9;
+}
+.election-detail-status > span:last-child {
+grid-column: 2;
+color: var(--muted);
+font-size: 0.8rem;
+}
+.election-resolution-note {
+max-width: 760px;
+margin: 14px 0 0;
+color: #46515b;
+line-height: 1.55;
+}
+.election-asof {
+display: grid;
+grid-template-columns: 1fr auto;
+align-content: start;
+gap: 8px 18px;
+padding-top: 4px;
+font-size: 0.79rem;
+}
+.election-asof span { color: var(--muted); }
+.election-asof strong { color: var(--navy); }
+.election-detail-columns {
+display: grid;
+grid-template-columns: minmax(260px, 0.75fr) minmax(420px, 1.25fr);
+gap: 38px;
+margin-top: 12px;
+}
+.campaign-list,
+.election-source-list { margin: 0; padding: 0; list-style: none; }
+.campaign-list li,
+.election-source-list li { padding: 11px 0; border-top: 1px solid #d9d6ce; }
+.campaign-list li:first-child,
+.election-source-list li:first-child { border-top-color: var(--navy); }
+.campaign-list strong { color: var(--navy); }
+.campaign-list span { display: block; margin-top: 3px; color: var(--muted); font-size: 0.78rem; }
+.election-source-list a { color: var(--teal-dark); font-weight: 750; }
+.election-source-list li > span { display: block; margin-top: 2px; color: var(--muted); font-size: 0.76rem; }
+.election-source-list blockquote {
+margin: 8px 0 0;
+padding: 0 0 0 12px;
+border-left: 2px solid #a7a39a;
+color: #4e5963;
+font-size: 0.78rem;
+font-style: normal;
+line-height: 1.5;
+}
+@media (max-width: 980px) {
+.election-control-row { grid-template-columns: repeat(2, 1fr); }
+.election-control-row .field-search { grid-column: 1 / -1; }
+.election-detail-columns { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 760px) {
+.tracker-table tr.data-row td:nth-child(5),
+.tracker-table tr.data-row td:nth-child(6) { display: block; }
+.tracker-table tr.data-row td:nth-child(6) {
+grid-column: 1 / -1;
+text-align: left;
+}
+.election-table tr.data-row { grid-template-columns: 1fr; gap: 8px; }
+.election-table tr.data-row td:first-child,
+.election-table tr.data-row td:nth-child(4),
+.election-table tr.data-row td:nth-child(5),
+.election-table tr.data-row td:nth-child(6) {
+display: block;
+grid-column: 1;
+text-align: left;
+}
+}
+@media (max-width: 620px) {
+.election-control-row { grid-template-columns: 1fr; }
+.election-control-row .field-search { grid-column: auto; }
+.election-intro { grid-template-columns: 1fr; gap: 8px; }
+.election-intro .section-kicker,
+.election-intro h2 { grid-column: 1; grid-row: auto; }
+.election-distribution-row { grid-template-columns: 1fr 34px; }
+.election-distribution-row > div { grid-column: 1 / -1; grid-row: 2; }
+.election-detail-status { grid-template-columns: 1fr; }
+.election-detail-status > span:last-child { grid-column: 1; }
+.secondary-link { display: block; width: fit-content; margin: 14px 0 0; }
 }
 </style>
 </head>
@@ -3443,21 +3688,17 @@ border-bottom: 1px solid #d8d4cb;
 
 <div class="content-page">
 <div class="topline">
-  <nav class="topnav" aria-label="Primary navigation"><a href="congressional_position_tracker.html">Tracker</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html" aria-current="page">Methods</a></nav>
+  <nav class="topnav" aria-label="Primary navigation"><a href="congressional_position_tracker.html">Tracker</a><span class="nav-separator" aria-hidden="true">|</span><a href="2026_elections.html">2026 elections</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html" aria-current="page">Methods</a></nav>
 </div>
 <section id="methods-and-scope" class="level1">
 <h1>Methods and scope</h1>
-<section id="what-the-tracker-contains" class="level2">
-<h2 class="anchored" data-anchor-id="what-the-tracker-contains">What the tracker contains</h2>
-<p>The tracker combines one row per displayed congressional seat with documented position events, direct source links, and election information. The public tables are generated from the separate canonical House and Senate datasets; the publication build does not rewrite those sources.</p>
+<section id="who-is-included" class="level2">
+<h2 class="anchored" data-anchor-id="who-is-included">Who is included</h2>
+<p>The House records begin with everyone who won a seat in the 2024 general election. Those members stay in the record even if they later left office. The Senate records cover the senators serving on September 30, 2026. The two chambers therefore do not represent the same kind of snapshot.</p>
+<p>When a special election produced a new House member before the cutoff, that member received a separate row beside the original winner. FL-20 and TX-23 were vacant at the cutoff. The history chart leaves these later successors out so that its House comparison follows the same group from year to year.</p>
 </section>
-<section id="cohorts" class="level2">
-<h2 class="anchored" data-anchor-id="cohorts">Cohorts</h2>
-<p>The House rows are the 435 winners of the 2024 general election. They preserve the original winning person even if that person subsequently departed or declined service. The Senate rows are the 100 senators serving at the September 30, 2026 evidence cutoff. Senate research also retains predecessor records privately, but the combined table attaches events only to the displayed current senator.</p>
-<p>The combined view supports cross-chamber browsing, but it is not a perfect common-date incumbent snapshot. A future House succession layer can align both chambers to a shared serving-at-cutoff definition.</p>
-</section>
-<section id="position-categories" class="level2">
-<h2 class="anchored" data-anchor-id="position-categories">Position categories</h2>
+<section id="how-positions-are-coded" class="level2">
+<h2 class="anchored" data-anchor-id="how-positions-are-coded">How positions are coded</h2>
 <ul>
 <li><strong>Support:</strong> affirmatively promotes data center or related AI infrastructure expansion without making development contingent on a material prerequisite.</li>
 <li><strong>Conditional support:</strong> supports development while requiring meaningful safeguards, planning, cost allocation, or community protections as conditions.</li>
@@ -3465,27 +3706,31 @@ border-bottom: 1px solid #d8d4cb;
 <li><strong>Opposition:</strong> affirmatively rejects a project or covered buildout, or calls for a halt, moratorium, or ban.</li>
 <li><strong>No position observed:</strong> the research found no codable position by the relevant cutoff, or none was observed in the selected calendar year. It is not a neutral policy position.</li>
 </ul>
-<p>A concern does not make support conditional unless it functions as a material prerequisite. Likewise, support for regulation does not by itself mean opposition to data center construction. For example, an affirmative H.R. 9340 action is regulation because it concerns cost allocation.</p>
+<p>A concern does not make support conditional unless it sets a real condition on development. Regulation is also different from opposition. A vote for H.R. 9340, for example, is coded as regulation because the bill addresses who pays for grid upgrades; the vote does not call for stopping data center construction.</p>
+<p>The category belongs to the action, not to the member once and for all. Someone may oppose a particular project and also support rules governing data centers more broadly. Both actions stay in the record.</p>
 </section>
-<section id="national-and-statelocal-positions" class="level2">
-<h2 class="anchored" data-anchor-id="national-and-statelocal-positions">National and state/local positions</h2>
-<p>Each event retains its detailed <code>target_scope</code>; the publication build also groups it as national, state/local, or mixed. The tracker uses the latest national or mixed-scope event as the member’s <strong>primary position</strong>. A separate state/local panel records the latest state, district, or named-project stance.</p>
-<p>One source can therefore generate two events when it establishes substantively different positions at different scopes. Gabe Vasquez’s record, for example, retains national conditional support for development with safeguards and a separate opposition event for the Socorro County proposal. Local opposition does not silently overwrite the national position.</p>
+<section id="what-latest-position-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-latest-position-means">What “latest position” means</h2>
+<p>The main table uses the most recent national or mixed-scope action found by the cutoff. Choosing a year changes the table to the last such action found during that year. The position filter follows the same rule.</p>
+<p>Open a member’s name to see the full event history. This is where earlier positions and state or local actions appear. “Latest” refers only to timing; it does not turn the most recent action into a final judgment about the member’s views.</p>
+<p>If both support and opposition appear, the record is flagged for closer review. Summer L. Lee, for example, has both categories in her national record, but the actions concern different policy instruments. The tracker treats this as a possible change, not proof of a reversal.</p>
+<p>Geographic scope matters as well. Gabe Vasquez has national evidence of conditional support for development with safeguards and a separate opposition event concerning the Socorro County proposal. The local event remains visible without replacing the national label in the table.</p>
 </section>
-<section id="annual-snapshots-and-within-year-movement" class="level2">
-<h2 class="anchored" data-anchor-id="annual-snapshots-and-within-year-movement">Annual snapshots and within-year movement</h2>
-<p>Annual views show the latest national position documented in that calendar year. If comparable national evidence changes from conditional support to regulation during 2025, the 2025 snapshot is regulation because it came later. The expanded member view still shows the dated within-year path and every underlying event.</p>
-<p>Later evidence does not automatically prove a change in opinion. Different projects, jurisdictions, and policy instruments can produce different codes without contradiction; readers should compare the scope and event summary.</p>
+<section id="reading-the-history-chart" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-history-chart">Reading the history chart</h2>
+<p>The chart starts each member at “No position observed.” When a national action is found, its category becomes the latest position for that year. If no later action appears, the chart carries the category forward. This keeps the annual comparison continuous, but it is not evidence that the member repeated or reaffirmed the view.</p>
+<p>The chamber tabs change the chart. The search box and the state, party, position, and year filters apply only to the table below it.</p>
 </section>
-<section id="carried-forward-history" class="level2">
-<h2 class="anchored" data-anchor-id="carried-forward-history">Carried-forward history</h2>
-<p>The overview chart begins each member at <strong>No position observed</strong>. For each year, it applies that year’s latest documented national position when one exists; otherwise it carries the prior year’s category forward. Each annual bar therefore includes the full selected chamber cohort, while the annotation above the bar reports how many members had a position actually observed during that calendar year.</p>
-<p>Carry-forward is a display convention, not fresh evidence that a member reaffirmed the position. A change between categories is also not necessarily a policy reversal: later evidence may concern a different instrument even at the same geographic scope. The chart responds to the All Congress, House, and Senate tabs. The table’s state, party, position, year, and search filters do not change the chart.</p>
+<section id="sources-and-quotations" class="level2">
+<h2 class="anchored" data-anchor-id="sources-and-quotations">Sources and quotations</h2>
+<p>Every coded event has a public source. Expanding a member shows the date, category, action, summary, source link, and the passage used to make the coding decision. Official bill-status XML is converted into a short readable record, while the archived source retains the original text.</p>
+<p>The categories are interpretations of public evidence. Readers can compare the summary with the quoted passage and original source when a classification is not straightforward. Archived verification copies are kept in the research repository and are not published with the site.</p>
 </section>
-<section id="evidence" class="level2">
-<h2 class="anchored" data-anchor-id="evidence">Evidence</h2>
-<p>Each coded event must be supported by a cataloged public source. The expanded row for a member shows the event summary, coding category, date, action type, and direct source links. Archived verification copies are maintained locally and are not embedded in or published with the site.</p>
-<p>Position categories are interpretive summaries of public evidence. Public statements can be ambiguous, so readers should use the event summary and linked original sources when evaluating an individual classification.</p>
+<section id="election-data" class="level2">
+<h2 class="anchored" data-anchor-id="election-data">2026 election data</h2>
+<p>The election page records whether a tracked member appears on the November 3, 2026 general-election ballot and which office that person is seeking. Campaigns that ended before November remain in the member’s history.</p>
+<p>Federal candidates come from the House Clerk’s October 8 nominee list. Gubernatorial candidates are checked against state or local election records. “On federal ballot” and “On state ballot” identify verified nominees. “No election scheduled” applies to Senate seats that are not up in 2026 and have no special election. Everyone else is listed as not on the November ballot, with the reason shown in the table.</p>
+<p>The election status was checked through October 18, 2026. It describes candidacy before the election and does not report election results. It also has no effect on position coding.</p>
 </section>
 </section>
 </div>
