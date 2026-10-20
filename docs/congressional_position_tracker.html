@@ -3661,6 +3661,85 @@ text-align: left;
 .election-detail-status > span:last-child { grid-column: 1; }
 .secondary-link { display: block; width: fit-content; margin: 14px 0 0; }
 }
+
+.history-view {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+gap: 8px 20px;
+margin: 22px 0 6px;
+padding-bottom: 8px;
+border-bottom: 1px solid #d6d2c9;
+}
+.history-view > span {
+color: var(--muted);
+font-size: 0.7rem;
+font-weight: 850;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.history-view-button {
+padding: 4px 0 3px;
+border: 0;
+border-bottom: 2px solid transparent;
+border-radius: 0;
+color: var(--muted);
+background: transparent;
+font-size: 0.78rem;
+font-weight: 750;
+}
+.history-view-button:hover { color: var(--navy); border-bottom-color: #9b9890; }
+.history-view-button.active { color: var(--navy); border-bottom-color: var(--rose); }
+.control-row {
+grid-template-columns:
+minmax(220px, 1.55fr)
+minmax(78px, 0.55fr)
+minmax(100px, 0.7fr)
+minmax(150px, 1fr)
+minmax(175px, 1.15fr)
+minmax(170px, 1.1fr);
+}
+.evidence-basis-note {
+max-width: 190px;
+padding-left: 11px;
+border-left: 2px solid #aaa69d;
+}
+.evidence-basis-note.basis-chamber_vote_only {
+border-left-color: var(--rose);
+color: #70525a;
+font-weight: 750;
+}
+.event-groups { display: grid; gap: 30px; }
+.event-group { border-top: 1px solid var(--navy); }
+.event-group-title {
+display: flex;
+justify-content: space-between;
+gap: 16px;
+margin: 0 0 15px;
+padding: 10px 0 0;
+color: var(--navy);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.event-group-title span { color: var(--muted); font-weight: 700; }
+.chamber-vote-group { border-top-color: var(--rose); }
+@media (max-width: 1150px) {
+.control-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: span 2; }
+}
+@media (max-width: 760px) {
+.control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: 1 / -1; }
+.evidence-basis-note { max-width: none; }
+}
+@media (max-width: 620px) {
+.control-row { grid-template-columns: 1fr; }
+.control-row .field-search { grid-column: auto; }
+.history-view { display: grid; gap: 6px; }
+.history-view-button { width: fit-content; text-align: left; }
+}
 </style>
 </head>
 
@@ -3708,13 +3787,18 @@ See what members of Congress have said and done about data center development si
   <div class="history-heading">
     <div>
       <p class="section-kicker">Overview</p>
-      <h2 id="history-title" class="anchored">How the latest documented position has changed</h2>
+      <h2 id="history-title" class="anchored">How the latest documented action has changed</h2>
     </div>
     <p>For each year, the chart uses the most recent national action found by the end of that year. Earlier positions remain in the member&#39;s event history.</p>
   </div>
+  <div class="history-view" role="group" aria-label="Evidence included in the history chart">
+    <span>History view</span>
+    <button class="history-view-button active" type="button" data-history-evidence="all" aria-pressed="true">All documented actions</button>
+    <button class="history-view-button" type="button" data-history-evidence="exclude_chamber_votes" aria-pressed="false">Exclude chamber-wide votes</button>
+  </div>
   <div class="history-legend" id="history-legend" aria-label="Position category legend"></div>
   <div class="history-chart" id="history-chart"></div>
-  <p class="history-note"><span id="history-scope"></span> When no later action was found, the chart carries the previous category forward. This keeps the timeline continuous; it does not mean that the member restated the position.</p>
+  <p class="history-note"><span id="history-scope"></span> When no later action was found, the chart carries the previous category forward. This keeps the timeline continuous; it does not mean that the member restated the position. <span id="history-evidence-note"></span></p>
 </section>
 <section class="controls" aria-label="Tracker filters">
   <div class="chamber-tabs" role="group" aria-label="Filter by chamber">
@@ -3726,18 +3810,19 @@ See what members of Congress have said and done about data center development si
     <div class="field field-search"><label for="search-input">Search member, seat, or evidence</label><input id="search-input" type="search" placeholder="Try a name, state, policy, or project" autocomplete="off"></div>
     <div class="field"><label for="state-filter">State</label><select id="state-filter"><option value="All">All states</option></select></div>
     <div class="field"><label for="party-filter">Party</label><select id="party-filter"><option value="All">All parties</option></select></div>
-    <div class="field"><label for="position-filter">Latest position</label><select id="position-filter"><option value="All">All positions</option></select></div>
-    <div class="field"><label for="year-filter">Time view</label><select id="year-filter"><option value="all">Latest through September 2026</option><option value="2026">Latest observed in 2026</option><option value="2025">Latest observed in 2025</option><option value="2024">Latest observed in 2024</option></select></div>
+    <div class="field"><label for="position-filter">Latest documented action</label><select id="position-filter"><option value="All">All positions</option></select></div>
+    <div class="field"><label for="basis-filter">Evidence basis</label><select id="basis-filter"><option value="All">All evidence</option><option value="other_evidence">Member-specific or collective</option><option value="chamber_vote_only">Chamber-wide vote only</option></select></div>
+    <div class="field"><label for="year-filter">Time view</label><select id="year-filter"><option value="all">Through Sep. 2026</option><option value="2026">Latest observed in 2026</option><option value="2025">Latest observed in 2025</option><option value="2024">Latest observed in 2024</option></select></div>
   </div>
 </section>
 <div class="results-bar">
-<span id="result-count" aria-live="polite"></span><span id="year-note" class="year-note">The table shows the latest national position. Open a member’s name for earlier actions and supporting sources.</span>
+<span id="result-count" aria-live="polite"></span><span id="year-note" class="year-note">The table shows the latest national action. Open a member’s name for earlier actions and supporting sources.</span>
 </div>
 
 <section class="table-shell" aria-label="Congressional position results">
   <div class="table-scroll">
     <table class="tracker-table">
-      <thead><tr><th>Member</th><th>Chamber</th><th>Seat</th><th>Party</th><th id="position-heading">Latest position</th><th>2026 election</th></tr></thead>
+      <thead><tr><th>Member</th><th>Chamber</th><th>Seat</th><th>Party</th><th id="position-heading">Latest documented action</th><th>2026 election</th></tr></thead>
       <tbody id="tracker-body"></tbody>
     </table>
   </div>
@@ -3750,7 +3835,8 @@ See what members of Congress have said and done about data center development si
   </div>
   <div class="notes-copy">
     <p>The House records begin with the winners of the 2024 general election and keep them in the tracker even if they later left office. Members elected afterward in special elections appear as additional rows. FL-20 and TX-23 were vacant at the cutoff.</p>
-    <p>The latest position is simply the most recent national action in the record. Open a member&#39;s name to see earlier actions, local positions, quotations, and sources. A later entry does not erase the earlier evidence or necessarily show a change of view.</p>
+    <p>The latest documented action is simply the most recent national action in the record. Open a member&#39;s name to see earlier actions, local positions, quotations, and sources. A later entry does not erase the earlier evidence or necessarily show a change of view.</p>
+    <p>Chamber-wide votes are included, but they are identified separately. A “chamber-wide vote only” label means that the roll call is the member&#39;s only qualifying evidence in the selected time view; it should not be read as a broader statement of the member&#39;s views.</p>
     <p class="notes-link"><a href="methods.html">Methods, definitions, and limitations <span aria-hidden="true">→</span></a></p>
   </div>
 </aside>
@@ -3762,7 +3848,7 @@ See what members of Congress have said and done about data center development si
   const members = payload.members;
   const coreMembers = members.filter(member => member.cohort_role !== "house_special_election_successor");
   const pageSize = 25;
-  const state = { chamber: "All", page: 1, openId: null };
+  const state = { chamber: "All", page: 1, openId: null, historyEvidence: "all" };
 
   const labels = {
     support: "Support",
@@ -3785,6 +3871,7 @@ See what members of Congress have said and done about data center development si
   const stateFilter = byId("state-filter");
   const partyFilter = byId("party-filter");
   const positionFilter = byId("position-filter");
+  const basisFilter = byId("basis-filter");
   const yearFilter = byId("year-filter");
 
   const escapeHtml = value => String(value ?? "")
@@ -3796,6 +3883,32 @@ See what members of Congress have said and done about data center development si
     ["national", "mixed"].includes(event.scope_level) &&
     (year === null || String(event.event_date).startsWith(String(year)))
   );
+  const isChamberWideVote = event => {
+    const policy = event.project_or_policy || "";
+    if (!policy.includes("9340")) return false;
+    return (
+      event.event_date === "2026-09-16" && ["floor vote", "roll-call vote"].includes(event.action_type)
+    ) || (
+      event.event_date === "2026-09-30" && event.action_type === "cloture vote"
+    );
+  };
+  const latestEvent = events => {
+    if (!events.length) return null;
+    return [...events].sort((a, b) => {
+      const dateOrder = String(b.event_date).localeCompare(String(a.event_date));
+      if (dateOrder) return dateOrder;
+      const aNumber = Number(String(a.event_id).match(/\d+$/)?.[0] || 0);
+      const bNumber = Number(String(b.event_id).match(/\d+$/)?.[0] || 0);
+      return bNumber - aNumber;
+    })[0];
+  };
+  const evidenceBasisForView = member => {
+    const year = yearFilter.value === "all" ? null : yearFilter.value;
+    const events = nationalEvents(member, year);
+    if (events.some(event => !isChamberWideVote(event))) return "other_evidence";
+    if (events.some(isChamberWideVote)) return "chamber_vote_only";
+    return "no_evidence";
+  };
   const latestActionForView = member => {
     if (yearFilter.value === "all") {
       return { code: member.latest_national_action || "no_position", date: member.latest_national_action_date || "" };
@@ -3808,7 +3921,18 @@ See what members of Congress have said and done about data center development si
   const compactLatestPosition = member => {
     const latest = latestActionForView(member);
     const date = latest.date ? `<small>${escapeHtml(latest.date)}</small>` : "";
-    return `<div class="latest-position-cell">${positionPill(latest.code)}${date}</div>`;
+    const year = yearFilter.value === "all" ? null : yearFilter.value;
+    const events = nationalEvents(member, year);
+    const basis = evidenceBasisForView(member);
+    const basisLabel = basis === "chamber_vote_only"
+      ? "Roll-call vote only · H.R. 9340"
+      : basis === "other_evidence" && events.some(isChamberWideVote)
+        ? "Other evidence also documented"
+        : basis === "other_evidence"
+          ? "Member-specific or collective evidence"
+          : "";
+    const basisLine = basisLabel ? `<small class="evidence-basis-note basis-${escapeHtml(basis)}">${escapeHtml(basisLabel)}</small>` : "";
+    return `<div class="latest-position-cell">${positionPill(latest.code)}${date}${basisLine}</div>`;
   };
   const safeUrl = value => /^https?:\/\//i.test(value || "") ? value : "";
   const sentence = value => (value || "").replaceAll("_", " ");
@@ -3850,7 +3974,9 @@ See what members of Congress have said and done about data center development si
   function carriedPositions(member) {
     let current = "no_position";
     return historyYears.map(year => {
-      const observed = member[`national_position_${year}`];
+      const observed = state.historyEvidence === "all"
+        ? member[`national_position_${year}`]
+        : latestEvent(nationalEvents(member, year).filter(event => !isChamberWideVote(event)))?.position_code;
       if (observed) current = observed;
       return current;
     });
@@ -3862,7 +3988,10 @@ See what members of Congress have said and done about data center development si
     byId("history-chart").innerHTML = historyYears.map((year, index) => {
       const counts = Object.fromEntries(historyCategories.map(code => [code, 0]));
       series.forEach(row => counts[row.positions[index]]++);
-      const observedThisYear = cohort.filter(member => member[`national_position_${year}`]).length;
+      const observedThisYear = cohort.filter(member => {
+        if (state.historyEvidence === "all") return member[`national_position_${year}`];
+        return nationalEvents(member, year).some(event => !isChamberWideVote(event));
+      }).length;
       const summary = historyCategories.map(code => `${labels[code]}: ${counts[code]}`).join("; ");
       const segments = historyCategories.map(code => {
         const count = counts[code];
@@ -3872,7 +4001,7 @@ See what members of Congress have said and done about data center development si
         return `<span class="history-segment history-${escapeHtml(code)}" style="width:${share.toFixed(4)}%" title="${escapeHtml(labels[code])}: ${count.toLocaleString()} (${share.toFixed(1)}%)" aria-label="${escapeHtml(labels[code])}: ${count.toLocaleString()}">${visibleLabel}</span>`;
       }).join("");
       return `<div class="history-row">
-        <div class="history-row-head"><strong>${year}</strong><span>${observedThisYear.toLocaleString()} member${observedThisYear === 1 ? "" : "s"} with a position observed that year</span></div>
+        <div class="history-row-head"><strong>${year}</strong><span>${observedThisYear.toLocaleString()} member${observedThisYear === 1 ? "" : "s"} with an action observed that year</span></div>
         <div class="history-bar" role="img" aria-label="${year} carried-forward positions. ${escapeHtml(summary)}">${segments}</div>
       </div>`;
     }).join("");
@@ -3883,6 +4012,9 @@ See what members of Congress have said and done about data center development si
       Senate: "Senators serving at the cutoff."
     };
     byId("history-scope").textContent = scopeLabels[chamberLabel];
+    byId("history-evidence-note").textContent = state.historyEvidence === "all"
+      ? "The 2026 increase partly reflects the September 16 House vote and September 30 Senate cloture vote on H.R. 9340."
+      : "This view leaves out the September House and Senate chamber-wide votes on H.R. 9340 while retaining sponsorships, statements, letters, and committee actions.";
   }
 
   function searchHaystack(member) {
@@ -3900,6 +4032,7 @@ See what members of Congress have said and done about data center development si
       if (partyFilter.value !== "All" && member.party !== partyFilter.value) return false;
       const latestCode = latestActionForView(member).code;
       if (positionFilter.value !== "All" && latestCode !== positionFilter.value) return false;
+      if (basisFilter.value !== "All" && evidenceBasisForView(member) !== basisFilter.value) return false;
       return !query || member._search.includes(query);
     });
   }
@@ -3950,18 +4083,33 @@ See what members of Congress have said and done about data center development si
 
   const scopeLabels = { national: "National", state_local: "State/local", mixed: "Mixed scope" };
 
+  function eventMarkup(event) {
+    return `<article class="event-card">
+      <div class="event-head"><span class="event-date">${text(event.event_date)}</span>${positionPill(event.position_code)}<span class="scope-pill" title="${escapeHtml(sentence(event.target_scope))}">${escapeHtml(scopeLabels[event.scope_level] || sentence(event.scope_level))}</span><span class="event-action">${escapeHtml(sentence(event.action_type))}</span></div>
+      <p>${text(event.summary)}</p>${sourceList(event)}
+    </article>`;
+  }
+
+  function eventGroup(title, events, className = "") {
+    if (!events.length) return "";
+    return `<section class="event-group ${escapeHtml(className)}">
+      <h4 class="event-group-title">${escapeHtml(title)} <span>${events.length}</span></h4>
+      <div class="event-list">${events.map(eventMarkup).join("")}</div>
+    </section>`;
+  }
+
   function detailPanel(member) {
-    const events = member.events.length ? member.events.map(event => `
-      <article class="event-card">
-        <div class="event-head"><span class="event-date">${text(event.event_date)}</span>${positionPill(event.position_code)}<span class="scope-pill" title="${escapeHtml(sentence(event.target_scope))}">${escapeHtml(scopeLabels[event.scope_level] || sentence(event.scope_level))}</span><span class="event-action">${escapeHtml(sentence(event.action_type))}</span></div>
-        <p>${text(event.summary)}</p>${sourceList(event)}
-      </article>`).join("") : `<p class="empty-events">No codable position event is attached to this member in the current release.</p>`;
+    const chamberVotes = member.events.filter(isChamberWideVote);
+    const otherEvents = member.events.filter(event => !isChamberWideVote(event));
+    const events = member.events.length
+      ? `${eventGroup("Member-specific and collective actions", otherEvents)}${eventGroup("Chamber-wide votes", chamberVotes, "chamber-vote-group")}`
+      : `<p class="empty-events">No codable position event is attached to this member in the current release.</p>`;
     return `<div class="detail-panel">
       <h2>${text(member.member_name)}</h2>
       <p class="detail-meta">${text(member.chamber)} · ${text(member.seat_label)} · ${text(member.party)} · ${text(member.cohort)}</p>
       <h3 class="detail-section-title">Documented position events (${member.events.length})</h3>
-      <p class="event-explainer">All coded actions are retained below, including earlier and state/local positions.</p>
-      <div class="event-list">${events}</div>
+      <p class="event-explainer">All coded actions are retained below, including earlier and state/local positions. Chamber-wide votes are separated because a vote may be the only evidence attached to a member.</p>
+      <div class="event-groups">${events}</div>
     </div>`;
   }
 
@@ -3991,10 +4139,10 @@ See what members of Congress have said and done about data center development si
     byId("prev-page").disabled = state.page <= 1;
     byId("next-page").disabled = state.page >= pages;
     const year = yearFilter.value;
-    byId("position-heading").textContent = year === "all" ? "Latest position" : `${year} latest position`;
+    byId("position-heading").textContent = year === "all" ? "Latest documented action" : `${year} latest action`;
     byId("year-note").textContent = year === "all"
-      ? "The table shows the latest national position. Open a member's name for earlier actions and supporting sources."
-      : `The table shows the latest national position found in ${year}. Open a member's name for the full record.`;
+      ? "The table shows the latest national action. The evidence-basis line distinguishes chamber-wide votes from other records."
+      : `The table shows the latest national action found in ${year}. The evidence-basis line reflects that year only.`;
     document.querySelectorAll(".member-trigger").forEach(button => button.addEventListener("click", () => {
       state.openId = state.openId === button.dataset.memberId ? null : button.dataset.memberId;
       if (state.openId) location.hash = encodeURIComponent(state.openId); else history.replaceState(null, "", location.pathname + location.search);
@@ -4014,7 +4162,16 @@ See what members of Congress have said and done about data center development si
     });
     render();
   }));
-  [searchInput, stateFilter, partyFilter, positionFilter, yearFilter].forEach(control => {
+  document.querySelectorAll(".history-view-button").forEach(button => button.addEventListener("click", () => {
+    state.historyEvidence = button.dataset.historyEvidence;
+    document.querySelectorAll(".history-view-button").forEach(option => {
+      const active = option === button;
+      option.classList.toggle("active", active);
+      option.setAttribute("aria-pressed", String(active));
+    });
+    renderHistory();
+  }));
+  [searchInput, stateFilter, partyFilter, positionFilter, basisFilter, yearFilter].forEach(control => {
     control.addEventListener(control === searchInput ? "input" : "change", () => { state.page = 1; state.openId = null; render(); });
   });
   byId("prev-page").addEventListener("click", () => { state.page--; state.openId = null; render(); });

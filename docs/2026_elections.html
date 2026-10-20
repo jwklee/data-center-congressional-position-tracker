@@ -3661,6 +3661,85 @@ text-align: left;
 .election-detail-status > span:last-child { grid-column: 1; }
 .secondary-link { display: block; width: fit-content; margin: 14px 0 0; }
 }
+
+.history-view {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+gap: 8px 20px;
+margin: 22px 0 6px;
+padding-bottom: 8px;
+border-bottom: 1px solid #d6d2c9;
+}
+.history-view > span {
+color: var(--muted);
+font-size: 0.7rem;
+font-weight: 850;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.history-view-button {
+padding: 4px 0 3px;
+border: 0;
+border-bottom: 2px solid transparent;
+border-radius: 0;
+color: var(--muted);
+background: transparent;
+font-size: 0.78rem;
+font-weight: 750;
+}
+.history-view-button:hover { color: var(--navy); border-bottom-color: #9b9890; }
+.history-view-button.active { color: var(--navy); border-bottom-color: var(--rose); }
+.control-row {
+grid-template-columns:
+minmax(220px, 1.55fr)
+minmax(78px, 0.55fr)
+minmax(100px, 0.7fr)
+minmax(150px, 1fr)
+minmax(175px, 1.15fr)
+minmax(170px, 1.1fr);
+}
+.evidence-basis-note {
+max-width: 190px;
+padding-left: 11px;
+border-left: 2px solid #aaa69d;
+}
+.evidence-basis-note.basis-chamber_vote_only {
+border-left-color: var(--rose);
+color: #70525a;
+font-weight: 750;
+}
+.event-groups { display: grid; gap: 30px; }
+.event-group { border-top: 1px solid var(--navy); }
+.event-group-title {
+display: flex;
+justify-content: space-between;
+gap: 16px;
+margin: 0 0 15px;
+padding: 10px 0 0;
+color: var(--navy);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.event-group-title span { color: var(--muted); font-weight: 700; }
+.chamber-vote-group { border-top-color: var(--rose); }
+@media (max-width: 1150px) {
+.control-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: span 2; }
+}
+@media (max-width: 760px) {
+.control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: 1 / -1; }
+.evidence-basis-note { max-width: none; }
+}
+@media (max-width: 620px) {
+.control-row { grid-template-columns: 1fr; }
+.control-row .field-search { grid-column: auto; }
+.history-view { display: grid; gap: 6px; }
+.history-view-button { width: fit-content; text-align: left; }
+}
 </style>
 </head>
 

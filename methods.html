@@ -2578,7 +2578,7 @@ justify-content: flex-end;
 gap: 20px;
 padding: 0 2px 22px;
 }
-.topnav { display: flex; align-items: center; gap: 10px; }
+.topnav { display: flex; align-items: center; gap: 10px; max-width: 100%; overflow-x: auto; white-space: nowrap; }
 .topnav a { color: var(--ink); font-size: 0.9rem; text-decoration: none; font-weight: 650; }
 .topnav a:hover { color: var(--teal-dark); text-decoration: underline; }
 .topnav a[aria-current="page"] { color: var(--teal-dark); }
@@ -3091,6 +3091,9 @@ font-family: inherit;
 font-size: clamp(0.98rem, 1.3vw, 1.12rem);
 line-height: 1.58;
 }
+.companion-link { margin: 12px 0 0; }
+.companion-link a { color: var(--teal-dark); font-size: 0.9rem; font-weight: 750; text-decoration: none; }
+.companion-link a:hover { text-decoration: underline; }
 .history-section {
 margin: 0;
 padding: 42px 0 38px;
@@ -3658,6 +3661,85 @@ text-align: left;
 .election-detail-status > span:last-child { grid-column: 1; }
 .secondary-link { display: block; width: fit-content; margin: 14px 0 0; }
 }
+
+.history-view {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+gap: 8px 20px;
+margin: 22px 0 6px;
+padding-bottom: 8px;
+border-bottom: 1px solid #d6d2c9;
+}
+.history-view > span {
+color: var(--muted);
+font-size: 0.7rem;
+font-weight: 850;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.history-view-button {
+padding: 4px 0 3px;
+border: 0;
+border-bottom: 2px solid transparent;
+border-radius: 0;
+color: var(--muted);
+background: transparent;
+font-size: 0.78rem;
+font-weight: 750;
+}
+.history-view-button:hover { color: var(--navy); border-bottom-color: #9b9890; }
+.history-view-button.active { color: var(--navy); border-bottom-color: var(--rose); }
+.control-row {
+grid-template-columns:
+minmax(220px, 1.55fr)
+minmax(78px, 0.55fr)
+minmax(100px, 0.7fr)
+minmax(150px, 1fr)
+minmax(175px, 1.15fr)
+minmax(170px, 1.1fr);
+}
+.evidence-basis-note {
+max-width: 190px;
+padding-left: 11px;
+border-left: 2px solid #aaa69d;
+}
+.evidence-basis-note.basis-chamber_vote_only {
+border-left-color: var(--rose);
+color: #70525a;
+font-weight: 750;
+}
+.event-groups { display: grid; gap: 30px; }
+.event-group { border-top: 1px solid var(--navy); }
+.event-group-title {
+display: flex;
+justify-content: space-between;
+gap: 16px;
+margin: 0 0 15px;
+padding: 10px 0 0;
+color: var(--navy);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.event-group-title span { color: var(--muted); font-weight: 700; }
+.chamber-vote-group { border-top-color: var(--rose); }
+@media (max-width: 1150px) {
+.control-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: span 2; }
+}
+@media (max-width: 760px) {
+.control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.control-row .field-search { grid-column: 1 / -1; }
+.evidence-basis-note { max-width: none; }
+}
+@media (max-width: 620px) {
+.control-row { grid-template-columns: 1fr; }
+.control-row .field-search { grid-column: auto; }
+.history-view { display: grid; gap: 6px; }
+.history-view-button { width: fit-content; text-align: left; }
+}
 </style>
 </head>
 
@@ -3688,7 +3770,7 @@ text-align: left;
 
 <div class="content-page">
 <div class="topline">
-  <nav class="topnav" aria-label="Primary navigation"><a href="congressional_position_tracker.html">Tracker</a><span class="nav-separator" aria-hidden="true">|</span><a href="2026_elections.html">2026 elections</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html" aria-current="page">Methods</a></nav>
+  <nav class="topnav" aria-label="Primary navigation"><a href="congressional_position_tracker.html">Congressional positions</a><span class="nav-separator" aria-hidden="true">|</span><a href="2026_elections.html">2026 elections</a><span class="nav-separator" aria-hidden="true">|</span><a href="methods.html" aria-current="page">Methods</a></nav>
 </div>
 <section id="methods-and-scope" class="level1">
 <h1>Methods and scope</h1>
@@ -3706,20 +3788,27 @@ text-align: left;
 <li><strong>Opposition:</strong> affirmatively rejects a project or covered buildout, or calls for a halt, moratorium, or ban.</li>
 <li><strong>No position observed:</strong> the research found no codable position by the relevant cutoff, or none was observed in the selected calendar year. It is not a neutral policy position.</li>
 </ul>
-<p>A concern does not make support conditional unless it sets a real condition on development. Regulation is also different from opposition. A vote for H.R. 9340, for example, is coded as regulation because the bill addresses who pays for grid upgrades; the vote does not call for stopping data center construction.</p>
+<p>A concern does not make support conditional unless it sets a real condition on development. Regulation is also different from opposition. A vote for H.R. 9340, for example, is coded as regulation because the bill establishes a cost-allocation rule for grid upgrades. The vote does not call for stopping data center construction, but neither does it by itself express support for more development.</p>
 <p>The category belongs to the action, not to the member once and for all. Someone may oppose a particular project and also support rules governing data centers more broadly. Both actions stay in the record.</p>
 </section>
-<section id="what-latest-position-means" class="level2">
-<h2 class="anchored" data-anchor-id="what-latest-position-means">What “latest position” means</h2>
+<section id="what-latest-documented-action-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-latest-documented-action-means">What “latest documented action” means</h2>
 <p>The main table uses the most recent national or mixed-scope action found by the cutoff. Choosing a year changes the table to the last such action found during that year. The position filter follows the same rule.</p>
 <p>Open a member’s name to see the full event history. This is where earlier positions and state or local actions appear. “Latest” refers only to timing; it does not turn the most recent action into a final judgment about the member’s views.</p>
 <p>If both support and opposition appear, the record is flagged for closer review. Summer L. Lee, for example, has both categories in her national record, but the actions concern different policy instruments. The tracker treats this as a possible change, not proof of a reversal.</p>
 <p>Geographic scope matters as well. Gabe Vasquez has national evidence of conditional support for development with safeguards and a separate opposition event concerning the Socorro County proposal. The local event remains visible without replacing the national label in the table.</p>
 </section>
+<section id="chamber-wide-votes-and-evidence-basis" class="level2">
+<h2 class="anchored" data-anchor-id="chamber-wide-votes-and-evidence-basis">Chamber-wide votes and evidence basis</h2>
+<p>Chamber-wide votes are valid documented actions, but they provide thinner evidence about an individual member’s broader views than a statement, sponsorship, letter, or other member-specific action. The tracker therefore keeps the substantive code and the evidence basis separate.</p>
+<p>The September 16 House vote on H.R. 9340 and the September 30 Senate cloture vote are marked as chamber-wide votes. A member who has no other qualifying national or mixed-scope record in the selected time view is labeled “Roll-call vote only · H.R. 9340.” “Other evidence also documented” means that at least one statement, sponsorship, letter, committee action, or similar record is also present. The Evidence basis filter lets readers separate these groups.</p>
+<p>H.R. 9340 votes remain coded as regulation because the bill would require large data center loads to bear specified grid-upgrade costs. This describes the policy instrument in the vote. It does not mean that every member voting for the bill has a generally restrictive position on data center development. Statements made by the bill’s sponsors or committee leaders are not attributed to every member who voted for it.</p>
+</section>
 <section id="reading-the-history-chart" class="level2">
 <h2 class="anchored" data-anchor-id="reading-the-history-chart">Reading the history chart</h2>
-<p>The chart starts each member at “No position observed.” When a national action is found, its category becomes the latest position for that year. If no later action appears, the chart carries the category forward. This keeps the annual comparison continuous, but it is not evidence that the member repeated or reaffirmed the view.</p>
-<p>The chamber tabs change the chart. The search box and the state, party, position, and year filters apply only to the table below it.</p>
+<p>The chart starts each member at “No position observed.” When a national action is found, its category becomes the latest action for that year. If no later action appears, the chart carries the category forward. This keeps the annual comparison continuous, but it is not evidence that the member repeated or reaffirmed the view.</p>
+<p>The history switch can remove the two H.R. 9340 chamber-wide votes from the chart. This alternate view retains bill sponsorships, public statements, signed letters, committee actions, and other evidence. It is a sensitivity check, not a recoding of the votes.</p>
+<p>The chamber tabs change the chart. The search box and the state, party, position, evidence-basis, and year filters apply only to the table below it.</p>
 </section>
 <section id="sources-and-quotations" class="level2">
 <h2 class="anchored" data-anchor-id="sources-and-quotations">Sources and quotations</h2>
