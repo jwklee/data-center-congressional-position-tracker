@@ -2582,6 +2582,7 @@ padding: 0 2px 22px;
 .topnav a { color: var(--ink); font-size: 0.9rem; text-decoration: none; font-weight: 650; }
 .topnav a:hover { color: var(--teal-dark); text-decoration: underline; }
 .topnav a[aria-current="page"] { color: var(--teal-dark); }
+.topnav-current { color: var(--teal-dark); font-size: 0.9rem; font-weight: 650; }
 .nav-separator { color: #9aa1ab; font-weight: 400; }
 .hero {
 position: relative;
@@ -3050,7 +3051,8 @@ min-height: 42px;
 padding: 0 0 12px;
 border-bottom: 1px solid var(--line);
 }
-.topnav a {
+.topnav a,
+.topnav-current {
 font-size: 0.76rem;
 font-weight: 800;
 letter-spacing: 0.09em;
@@ -3501,6 +3503,33 @@ font-weight: 500;
 .tracker-election-link:hover span { border-bottom-color: var(--rose); }
 .election-context-row strong { max-width: 200px; }
 .election-hero { padding-bottom: clamp(28px, 3vw, 42px); }
+.election-view-nav {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+gap: 7px 14px;
+margin: 18px 0 0;
+padding: 0 0 15px;
+border-bottom: 1px solid var(--line);
+}
+.election-view-nav > span:first-child {
+margin-right: 3px;
+color: var(--muted);
+font-size: 0.64rem;
+font-weight: 850;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.election-view-nav a {
+padding-bottom: 3px;
+border-bottom: 2px solid transparent;
+color: var(--muted);
+font-size: 0.78rem;
+font-weight: 780;
+text-decoration: none;
+}
+.election-view-nav a:hover { color: var(--navy); border-bottom-color: #99978f; }
+.election-view-nav a[aria-current="page"] { color: var(--navy); border-bottom-color: var(--rose); }
 .election-intro {
 display: grid;
 grid-template-columns: minmax(220px, 0.7fr) minmax(420px, 1.3fr);
@@ -3592,6 +3621,16 @@ margin: 14px 0 0;
 color: #46515b;
 line-height: 1.55;
 }
+.cross-view-link { margin: 13px 0 0; }
+.cross-view-link a,
+.seat-context-member {
+color: var(--teal-dark);
+font-size: 0.76rem;
+font-weight: 780;
+text-decoration: none;
+}
+.cross-view-link a:hover,
+.seat-context-member:hover { text-decoration: underline; }
 .election-asof {
 display: grid;
 grid-template-columns: 1fr auto;
@@ -3740,6 +3779,227 @@ text-transform: uppercase;
 .history-view { display: grid; gap: 6px; }
 .history-view-button { width: fit-content; text-align: left; }
 }
+
+.race-hero { padding-block: clamp(30px, 4vw, 54px); }
+.race-hero h1 { max-width: 1120px; font-size: clamp(2.15rem, 4.4vw, 4.55rem); }
+.race-scope {
+display: grid;
+grid-template-columns: minmax(300px, 1fr) minmax(430px, auto);
+gap: 24px 50px;
+align-items: center;
+margin: 30px 2px 0;
+padding: 0 0 24px;
+border-bottom: 1px solid var(--line);
+}
+.race-scope > p { max-width: 760px; margin: 0; color: #46515f; line-height: 1.6; }
+.race-position-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.race-view-controls {
+display: grid;
+grid-template-columns: auto auto minmax(280px, 1fr);
+gap: 16px 38px;
+align-items: end;
+margin: 26px 2px 0;
+padding-bottom: 16px;
+border-bottom: 1px solid var(--line);
+}
+.view-choice { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px 16px; }
+.view-choice-label {
+flex-basis: 100%;
+color: var(--muted);
+font-size: 0.67rem;
+font-weight: 850;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+}
+.race-view-button {
+padding: 3px 0 4px;
+border: 0;
+border-bottom: 2px solid transparent;
+border-radius: 0;
+color: var(--muted);
+background: transparent;
+font-size: 0.79rem;
+font-weight: 750;
+cursor: pointer;
+}
+.race-view-button:hover { color: var(--navy); border-bottom-color: #99978f; }
+.race-view-button.active { color: var(--navy); border-bottom-color: var(--rose); }
+.race-view-note { margin: 0; color: var(--muted); font-size: 0.77rem; line-height: 1.55; }
+.race-view-controls.uniform-cutoff { grid-template-columns: auto minmax(300px, 1fr); }
+.race-view-controls [hidden] { display: none !important; }
+.race-controls { padding: 19px 0 4px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.race-control-row {
+display: grid;
+grid-template-columns: minmax(250px, 1.65fr) repeat(4, minmax(145px, 1fr));
+gap: 11px;
+align-items: end;
+}
+.race-control-row .field input,
+.race-control-row .field select { border: 0; border-bottom: 1px solid #aeb1b5; border-radius: 0; background: rgba(255,255,255,0.48); }
+#race-result-count { color: var(--navy); font-size: 0.91rem; font-weight: 750; }
+.race-table { min-width: 1040px; table-layout: fixed; }
+.race-table th:nth-child(1) { width: 15%; }
+.race-table th:nth-child(2) { width: 43%; }
+.race-table th:nth-child(3) { width: 23%; }
+.race-table th:nth-child(4) { width: 19%; }
+.race-table.uniform-cutoff th:nth-child(1) { width: 16%; }
+.race-table.uniform-cutoff th:nth-child(2) { width: 54%; }
+.race-table.uniform-cutoff th:nth-child(3) { width: 30%; }
+.race-table.uniform-cutoff th:nth-child(4),
+.race-table.uniform-cutoff tr.data-row td:nth-child(4) { display: none; }
+.race-trigger { font-family: Georgia, "Times New Roman", serif; font-size: 1.03rem; }
+.race-candidate-list { display: grid; gap: 7px; }
+.race-candidate-summary {
+display: grid;
+grid-template-columns: 22px minmax(130px, 1fr) minmax(132px, auto);
+gap: 9px;
+align-items: center;
+}
+.party-mark {
+display: grid;
+width: 21px;
+height: 21px;
+place-items: center;
+border-left: 3px solid #7d8791;
+color: var(--muted);
+font-size: 0.68rem;
+font-weight: 900;
+}
+.party-mark-Democratic { border-left-color: var(--blue); color: #28598f; }
+.party-mark-Republican { border-left-color: var(--rose); color: #8b3441; }
+.race-candidate-name { min-width: 0; color: var(--navy); font-weight: 770; }
+.race-candidate-name-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 8px; }
+.race-candidate-name > small { display: block; overflow: hidden; color: var(--muted); font-size: 0.68rem; font-weight: 550; text-overflow: ellipsis; white-space: nowrap; }
+.incumbent-label {
+display: inline-block;
+padding-bottom: 1px;
+border-bottom: 1px solid var(--teal);
+color: var(--teal-dark);
+font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+font-size: 0.58rem;
+font-weight: 850;
+letter-spacing: 0.075em;
+line-height: 1.2;
+text-transform: uppercase;
+vertical-align: middle;
+white-space: nowrap;
+}
+.seat-status-label {
+display: block;
+width: fit-content;
+margin-top: 6px;
+padding-left: 7px;
+border-left: 2px solid #9a4652;
+color: #7d3540;
+font-size: 0.6rem;
+font-weight: 850;
+letter-spacing: 0.075em;
+line-height: 1.25;
+text-transform: uppercase;
+}
+.multiple-incumbents-label { border-left-color: var(--teal); color: var(--teal-dark); }
+.race-candidate-position { display: grid; justify-items: start; gap: 2px; }
+.race-candidate-position small { color: var(--rose); font-size: 0.64rem; font-weight: 700; }
+.race-comparison-cell,
+.race-timing-cell { display: grid; gap: 5px; align-items: start; }
+.race-comparison-label { color: var(--navy); font-weight: 780; line-height: 1.35; }
+.race-comparison-cell small,
+.race-timing-cell small { color: var(--muted); font-size: 0.7rem; line-height: 1.4; }
+.comparison-different_broad_groups { color: #8c3442; }
+.comparison-one_position_observed { color: #6a5841; }
+.later-timing, .later-evidence { color: #913849; font-weight: 800; }
+.later-evidence { font-size: 0.68rem; }
+.race-detail { padding-top: 30px; background: #f7faf8; }
+.race-detail-heading {
+display: grid;
+grid-template-columns: minmax(250px, 0.7fr) minmax(300px, 1.3fr);
+gap: 30px;
+align-items: end;
+margin-bottom: 26px;
+padding-bottom: 18px;
+border-bottom: 1px solid #cacfc9;
+}
+.race-detail-heading h2 { margin: 0; }
+.race-detail-heading > p { max-width: 700px; margin: 0; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
+.seat-context {
+display: grid;
+grid-template-columns: 115px minmax(0, 1fr);
+gap: 14px;
+margin: -4px 0 30px;
+padding: 0 0 20px;
+border-bottom: 1px solid #cacfc9;
+}
+.seat-context-label {
+margin: 0;
+color: var(--muted);
+font-size: 0.68rem;
+font-weight: 850;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+}
+.seat-context > div > p { max-width: 780px; margin: 0; color: #394555; font-size: 0.84rem; line-height: 1.55; }
+.seat-context-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 18px; margin-top: 5px; }
+.seat-context-source { display: inline-block; font-size: 0.73rem; line-height: 1.45; }
+.race-candidate-profiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px 44px; }
+.race-candidate-profile { min-width: 0; padding-top: 13px; border-top: 2px solid var(--navy); }
+.race-profile-heading { display: flex; align-items: start; justify-content: space-between; gap: 18px; }
+.race-profile-heading h3 { margin: 0; color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: 1.35rem; }
+.race-profile-heading h3 .incumbent-label { margin-left: 9px; }
+.race-party-label { margin: 0 0 3px; color: var(--muted); font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.race-profile-position { display: grid; justify-items: end; gap: 4px; text-align: right; }
+.race-profile-position small { color: var(--muted); font-size: 0.7rem; }
+.race-profile-meta { margin: 18px 0 25px; }
+.race-profile-meta > div { display: grid; grid-template-columns: 115px 1fr; gap: 14px; padding: 8px 0; border-top: 1px solid #d9ddd8; }
+.race-profile-meta dt { color: var(--muted); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+.race-profile-meta dd { margin: 0; color: #394555; font-size: 0.78rem; line-height: 1.45; }
+.race-candidate-profile > .cross-view-link { margin: -10px 0 22px; }
+.race-candidate-profile h4 { margin: 0 0 10px; color: var(--navy); font-size: 0.77rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.race-source-title { display: block; margin-top: 2px; color: var(--muted); font-size: 0.75rem; }
+.race-page .event-card { padding: 13px 0 5px; border: 0; border-top: 1px solid #d6dbd6; border-radius: 0; background: transparent; }
+.race-page .event-list { gap: 2px; }
+@media (max-width: 1120px) {
+.race-scope { grid-template-columns: 1fr; }
+.race-position-legend { justify-content: flex-start; }
+.race-view-controls { grid-template-columns: 1fr 1fr; }
+.race-view-controls.uniform-cutoff { grid-template-columns: auto minmax(260px, 1fr); }
+.race-view-note { grid-column: 1 / -1; }
+.race-control-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.race-control-row .field-search { grid-column: span 2; }
+}
+@media (max-width: 760px) {
+.race-view-controls { grid-template-columns: 1fr; gap: 16px; }
+.race-view-controls.uniform-cutoff { grid-template-columns: 1fr; }
+.race-view-note { grid-column: auto; }
+.race-control-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.race-control-row .field-search { grid-column: 1 / -1; }
+.race-table { min-width: 0; }
+.race-table thead { display: none; }
+.race-table tr.data-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 18px; padding: 15px; border-bottom: 1px solid #dedcd6; }
+.race-table tr.data-row td,
+.race-table tr.data-row td:first-child,
+.race-table tr.data-row td:nth-child(2),
+.race-table tr.data-row td:nth-child(3),
+.race-table tr.data-row td:nth-child(4) { display: block; padding: 0; border: 0; }
+.race-table tr.data-row td:nth-child(1) { grid-column: 1; grid-row: 1; }
+.race-table tr.data-row td:nth-child(4) { grid-column: 2; grid-row: 1; text-align: right; }
+.race-table tr.data-row td:nth-child(2),
+.race-table tr.data-row td:nth-child(3) { grid-column: 1 / -1; }
+.race-table .detail-row { display: table-row; }
+.race-table .detail-row td { display: table-cell; padding: 0; }
+.race-detail-heading { grid-template-columns: 1fr; gap: 10px; }
+.seat-context { grid-template-columns: 1fr; gap: 5px; }
+}
+@media (max-width: 620px) {
+.race-page { width: min(100% - 24px, 1480px); }
+.race-control-row { grid-template-columns: 1fr; }
+.race-control-row .field-search { grid-column: auto; }
+.race-candidate-summary { grid-template-columns: 22px minmax(0, 1fr); }
+.race-candidate-position { grid-column: 2; }
+.race-candidate-profiles { grid-template-columns: 1fr; }
+.race-profile-heading { display: grid; }
+.race-profile-position { justify-items: start; text-align: left; }
+.race-profile-meta > div { grid-template-columns: 1fr; gap: 2px; }
+}
 </style>
 </head>
 
@@ -3776,8 +4036,9 @@ text-transform: uppercase;
 <h1>Methods and scope</h1>
 <section id="who-is-included" class="level2">
 <h2 class="anchored" data-anchor-id="who-is-included">Who is included</h2>
-<p>The House records begin with everyone who won a seat in the 2024 general election. Those members stay in the record even if they later left office. The Senate records cover the senators serving on September 30, 2026. The two chambers therefore do not represent the same kind of snapshot.</p>
-<p>When a special election produced a new House member before the cutoff, that member received a separate row beside the original winner. FL-20 and TX-23 were vacant at the cutoff. The history chart leaves these later successors out so that its House comparison follows the same group from year to year.</p>
+<p>The House records begin with everyone who won a seat in the 2024 general election. Those members stay in the record even if they later left office. The Senate records cover the senators serving at the September 30, 2026 membership snapshot. The two chambers therefore do not represent the same kind of snapshot.</p>
+<p>When a special election produced a new House member before the membership snapshot, that member received a separate row beside the original winner. FL-20 and TX-23 were vacant at that snapshot. The history chart leaves these later successors out so that its House comparison follows the same group from year to year.</p>
+<p>Member position evidence was searched through October 22, 2026. The membership snapshot, position-evidence cutoff, election-status date, and publication date are maintained separately.</p>
 </section>
 <section id="how-positions-are-coded" class="level2">
 <h2 class="anchored" data-anchor-id="how-positions-are-coded">How positions are coded</h2>
@@ -3820,6 +4081,17 @@ text-transform: uppercase;
 <p>The election page records whether a tracked member appears on the November 3, 2026 general-election ballot and which office that person is seeking. Campaigns that ended before November remain in the member’s history.</p>
 <p>Federal candidates come from the House Clerk’s October 8 nominee list. Gubernatorial candidates are checked against state or local election records. “On federal ballot” and “On state ballot” identify verified nominees. “No election scheduled” applies to Senate seats that are not up in 2026 and have no special election. Everyone else is listed as not on the November ballot, with the reason shown in the table.</p>
 <p>The election status was checked through October 18, 2026. It describes candidacy before the election and does not report election results. It also has no effect on position coding.</p>
+</section>
+<section id="house-race-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="house-race-comparison">2026 House race comparison</h2>
+<p>The House race page starts with the Clerk of the House’s October 8 list of general- election nominees. It covers all 435 districts. In the 411 races with exactly one Democratic and one Republican nominee, those two candidates form the comparison. The remaining 24 races have an open primary, a same-party contest, an uncontested major-party candidate, or another ballot structure. All selected candidates in those races remain visible rather than being forced into a Democratic–Republican pair. Altogether, the page follows 892 candidates.</p>
+<p>For the 361 candidates who already appear in the congressional tracker, the race page reuses the member evidence through October 22. The other 531 candidates were searched separately for public actions and statements from January 1, 2024 through October 22, 2026. Searches covered campaign and official websites, news coverage, public records, and policy documents. A missing record means that no codable evidence was found in this search; it does not establish that the candidate has no view. Campaign websites were not separately verified in every case.</p>
+<p>The member and new-candidate records currently share an October 22 evidence cutoff, so the page shows one time view. The underlying comparison keeps separate common-cutoff and latest-available fields so a future incremental update can mark any temporary timing difference rather than silently mixing evidence windows.</p>
+<p>Once the congressional and candidate records share the same cutoff, these two views are identical. The page then removes the time switch and evidence-timing column and shows the shared date once as the evidence cutoff.</p>
+<p>The displayed category is the candidate’s latest national or mixed-scope action in the selected view. When no such action exists but state or local evidence does, the page shows that action and labels its scope. Opening a race reveals every coded event, so the comparison category should not be read as a complete account of the candidate’s record or as proof of a change in position.</p>
+<p>A district is marked <strong>Open seat</strong> when no candidate in that race was serving in the 119th House at the tracker cutoff. Opening the race identifies the relevant current or departing member, explains why no incumbent appears on the district’s November ballot, and links to the underlying election or vacancy record. This covers members who did not seek reelection, lost a primary, ran for another office or district, and seats that were vacant at the cutoff. A separate <strong>Two incumbents</strong> marker identifies the one race where two sitting House members appear on the same ballot.</p>
+<p>The evidence switch provides a sensitivity check for H.R. 9340. <strong>All documented actions</strong> includes the chamber-wide House roll call for incumbent members. <strong>Exclude chamber-wide votes</strong> removes that vote from the displayed comparison while retaining candidate-specific statements, sponsorships, proposals, and other actions. Neither view changes the underlying event record.</p>
+<p>The page is a descriptive pre-election record, not an assessment of candidate quality, electoral competitiveness, or likely outcomes. The ballot and evidence files should be refreshed before any analysis of November results.</p>
 </section>
 </section>
 </div>
