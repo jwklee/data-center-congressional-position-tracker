@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jaewook Lee">
 
 <title>Congressional Data Center Position Tracker</title>
 <style>
@@ -4000,6 +4001,40 @@ text-transform: uppercase;
 .race-profile-position { justify-items: start; text-align: left; }
 .race-profile-meta > div { grid-template-columns: 1fr; gap: 2px; }
 }
+.project-byline {
+margin: 10px 0 0;
+color: var(--muted);
+font-size: 0.79rem;
+}
+.project-byline a,
+.site-credit a {
+color: var(--navy);
+text-decoration-thickness: 1px;
+text-underline-offset: 3px;
+}
+.site-credit {
+width: min(100% - 64px, 1480px);
+margin: 48px auto 0;
+padding: 22px 0 34px;
+border-top: 1px solid #c9cfca;
+color: var(--muted);
+font-size: 0.72rem;
+line-height: 1.55;
+}
+.site-credit-inner {
+display: flex;
+flex-wrap: wrap;
+align-items: baseline;
+gap: 4px 22px;
+}
+.site-credit p { margin: 0; }
+.site-credit-primary,
+.site-credit-links { display: flex; gap: 7px; align-items: baseline; }
+.site-credit-primary { color: #394555; font-weight: 650; }
+@media (max-width: 620px) {
+.site-credit { width: min(100% - 24px, 1480px); }
+.site-credit-inner { display: grid; gap: 5px; }
+}
 </style>
 </head>
 
@@ -4018,6 +4053,12 @@ text-transform: uppercase;
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jaewook Lee </p>
+          </div>
+  </div>
     
   
     
@@ -4038,6 +4079,9 @@ Congressional Data Center Position Tracker
 </h1>
 <p class="hero-copy">
 See what members of Congress have said and done about data center development since 2024. Search by member, state, party, chamber, or position.
+</p>
+<p class="project-byline">
+By <a href="https://jwklee.github.io">Jaewook Lee</a>
 </p>
 <p class="companion-link">
 <a href="https://jwklee.github.io/data-center-opposition-tracker/tracker.html">Explore the Local Opposition Tracker <span aria-hidden="true">→</span></a>
@@ -4449,6 +4493,13 @@ See what members of Congress have said and done about data center development si
 
 </main>
 <!-- /main column -->
+<footer class="site-credit" aria-label="Project credit and release information">
+  <div class="site-credit-inner">
+    <p class="site-credit-primary"><span>By <a href="https://jwklee.github.io">Jaewook Lee</a></span><span aria-hidden="true">·</span><span>Release 0.5.0</span></p>
+    <p>Position evidence through October 22, 2026 <span aria-hidden="true">·</span> Released October 23, 2026</p>
+    <p class="site-credit-links"><a href="https://github.com/jwklee/data-center-congressional-position-tracker/blob/main/CITATION.cff">Citation</a><span aria-hidden="true">·</span><a href="https://github.com/jwklee/data-center-congressional-position-tracker/commits/main/">Version history</a></p>
+  </div>
+</footer>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
